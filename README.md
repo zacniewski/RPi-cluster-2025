@@ -5,3 +5,8 @@ Description of the process of building RPi cluster
   - camera [IC-7112W](https://pl.edimax.pl/edimax/merchandise/merchandise_detail/data/edimax/pl/home_network_cameras_indoor_ptz/ic-7112w/)
   - camera [OAK-D Lite](https://docs.luxonis.com/hardware/products/OAK-D%20Lite),
   - ...
+
+
+## Links
+  - Docker [Swarm](https://docs.docker.com/engine/swarm/),
+  - Docker Swarm [vs](https://spacelift.io/blog/docker-swarm-vs-kubernetes) K8s,  
