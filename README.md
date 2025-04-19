@@ -251,7 +251,7 @@ Project Link: [https://github.com/zacniewski/RPi-cluster-2025](https://github.co
 [issues-shield]: https://img.shields.io/github/issues/zacniewski/RPi-cluster-2025.svg?style=for-the-badge
 [issues-url]: https://github.com/zacniewski/RPi-cluster-2025/issues
 [license-shield]: https://img.shields.io/github/license/zacniewski/RPi-cluster-2025.svg?style=for-the-badge
-[license-url]: https://github.com/zacniewski/RPi-cluster-2025/blob/main/LICENSE.txt
+[license-url]: https://github.com/zacniewski/RPi-cluster-2025/blob/master/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/artur-zacniewski-29436928
 [product-screenshot]: images/screenshot.png
