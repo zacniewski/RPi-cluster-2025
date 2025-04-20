@@ -49,9 +49,9 @@ Description of the process of building RPi cluster
     <img src="images/logo.png" alt="Logo" width="80" height="80">
   </a>
 
-<h3 align="center">project_title</h3>
+<h3 style="align:center">Rasperry Pi cluster</h3>
 
-  <p align="center">
+  <p style="align:center">
     project_description
     <br />
     <a href="https://github.com/zacniewski/RPi-cluster-2025"><strong>Explore the docs »</strong></a>
@@ -102,7 +102,7 @@ Description of the process of building RPi cluster
 
 Here's a blank template to get started. To avoid retyping too much info, do a search and replace with your text editor for the following: `zacniewski`, `RPi-cluster-2025`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`, `project_license`
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p style="align:right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -117,7 +117,7 @@ Here's a blank template to get started. To avoid retyping too much info, do a se
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
 * [![JQuery][JQuery.com]][JQuery-url]
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p style="align:right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -156,7 +156,7 @@ This is an example of how to list things you need to use the software and how to
    git remote -v # confirm the changes
    ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p style="align:right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -167,7 +167,7 @@ Use this space to show useful examples of how a project can be used. Additional 
 
 _For more examples, please refer to the [Documentation](https://example.com)_
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p style="align:right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -175,13 +175,13 @@ _For more examples, please refer to the [Documentation](https://example.com)_
 ## Roadmap
 
 - [ ] Feature 1
-- [ ] Feature 2
+- [x] Feature 2
 - [ ] Feature 3
     - [ ] Nested Feature
 
 See the [open issues](https://github.com/zacniewski/RPi-cluster-2025/issues) for a full list of proposed features (and known issues).
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p style="align:right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -199,7 +199,7 @@ Don't forget to give the project a star! Thanks again!
 4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p style="align:right">(<a href="#readme-top">back to top</a>)</p>
 
 ### Top contributors:
 
@@ -214,7 +214,7 @@ Don't forget to give the project a star! Thanks again!
 
 Distributed under the project_license. See `LICENSE.txt` for more information.
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p style="align:right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
@@ -225,18 +225,18 @@ Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_
 
 Project Link: [https://github.com/zacniewski/RPi-cluster-2025](https://github.com/zacniewski/RPi-cluster-2025)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p style="align:right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
+Below are some links, that I've useful during the process of creating this project.  
+* [Best README template](https://github.com/othneildrew/Best-README-Template/blob/main/README.md)
+* [Custom badges with Shield.io](https://javascript.plainenglish.io/how-to-make-custom-language-badges-for-your-profile-using-shields-io-d2aeaf016b6b)
+* [Simple Icons](https://simpleicons.org/)
 
-* []()
-* []()
-* []()
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+<p style="align:right">(<a href="#readme-top">back to top</a>)</p>
 
 
 
