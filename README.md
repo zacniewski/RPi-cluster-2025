@@ -4,7 +4,7 @@ Description of the process of building RPi cluster
 ## What do I have?
   - camera [IC-7112W](https://pl.edimax.pl/edimax/merchandise/merchandise_detail/data/edimax/pl/home_network_cameras_indoor_ptz/ic-7112w/)
   - camera [OAK-D Lite](https://docs.luxonis.com/hardware/products/OAK-D%20Lite),
-  - ...
+  - camera [CamSpot 5.0 WiFi 1080p](https://botland.com.pl/produkty-wycofane/15582-kamera-ip-overmax-camspot-50-wifi-1080p-5902581657732.html) (not sold already),  
 
 
 ## Links
@@ -44,9 +44,9 @@ Description of the process of building RPi cluster
 
 <!-- PROJECT LOGO -->
 <br />
-<div align="center">
+<div style="align:center">
   <a href="https://github.com/zacniewski/RPi-cluster-2025">
-    <img src="images/raspberry_pi_logo_wallpaper_4k_by_onix5_dc8gy9c-pre.jpg" alt="Logo RPi">
+    <img src="images/rpi_0001_ico___raspberry_pi_boot_drive_icon_by_korapucard_ddh41au-fullview.jpg" alt="Logo RPi">
   </a>
 
 <h3 style="align:center">Rasperry Pi cluster</h3>
@@ -113,9 +113,10 @@ Here's a blank template to get started. To avoid retyping too much info, do a se
 * [![Django][Django.com]][Django-url]
 * [![Docker][Docker.com]][Docker-url]
 * [![Spark][Spark.org]][Spark-url]
-* [![Laravel][Laravel.com]][Laravel-url]
+* [![Github][Github.com]][Github-url]
+* [![Gitlab][Gitlab.com]][Gitlab-url]
 * [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+* [![AlpineJS][Alpine.js]][Alpine-url]
 
 <p style="align:right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -255,7 +256,7 @@ Below are some links, that I've useful during the process of creating this proje
 [license-url]: https://github.com/zacniewski/RPi-cluster-2025/blob/main/LICENSE.txt
 [linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
 [linkedin-url]: https://linkedin.com/in/artur-zacniewski-29436928
-[product-screenshot]: images/screenshot.png
+[product-screenshot]: images/raspberry_pi_logo_wallpaper_4k_by_onix5_dc8gy9c-pre.jpg
 
 [RPi.com]: https://img.shields.io/badge/-RaspberryPi-C51A4A?style=for-the-badge&logo=Raspberry-Pi
 [RPi-url]: https://www.raspberrypi.com/
@@ -267,10 +268,12 @@ Below are some links, that I've useful during the process of creating this proje
 [Docker-url]: https://www.docker.com/
 [Spark.org]: https://img.shields.io/badge/ApacheSpark-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white
 [Spark-url]: https://spark.apache.org/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
+[Github.com]: https://img.shields.io/badge/GitLab-FC6D26?style=for-the-badge&logo=laravel&logoColor=white
+[Github-url]: https://github.com
+[Gitlab.com]: https://img.shields.io/badge/GitHub-%23121011.svg?style=for-the-badge&logo=laravel&logoColor=white
+[Gitlab-url]: https://gitlab.com
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
+[Alpine.js]: https://img.shields.io/badge/Alpine.js-8BC0D0?style=for-the-badge&logo=alpinedotjs&logoColor=white
+[Alpine-url]: https://alpinejs.dev/ 
 
