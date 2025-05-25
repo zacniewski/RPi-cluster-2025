@@ -44,7 +44,7 @@ Description of the process of building RPi cluster
 
 <!-- PROJECT LOGO -->
 <br />
-<div style="align:center">
+<div align="center">
   <a href="https://github.com/zacniewski/RPi-cluster-2025">
     <img src="images/rpi_0001_ico___raspberry_pi_boot_drive_icon_by_korapucard_ddh41au-fullview.jpg" alt="Logo RPi">
   </a>
