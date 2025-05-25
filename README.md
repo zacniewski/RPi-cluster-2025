@@ -46,7 +46,7 @@ Description of the process of building RPi cluster
 <br />
 <div align="center">
   <a href="https://github.com/zacniewski/RPi-cluster-2025">
-    <img src="images/logo.png" alt="Logo" width="80" height="80">
+    <img src="images/raspberry_pi_logo_wallpaper_4k_by_onix5_dc8gy9c-pre.jpg" alt="Logo RPi">
   </a>
 
 <h3 style="align:center">Rasperry Pi cluster</h3>
@@ -235,6 +235,7 @@ Below are some links, that I've useful during the process of creating this proje
 * [Best README template](https://github.com/othneildrew/Best-README-Template/blob/main/README.md)
 * [Custom badges with Shield.io](https://javascript.plainenglish.io/how-to-make-custom-language-badges-for-your-profile-using-shields-io-d2aeaf016b6b)
 * [Simple Icons](https://simpleicons.org/)
+* [Raspberry Pi logo/wallpaper](https://www.deviantart.com/onix5/art/Raspberry-Pi-Logo-Wallpaper-4K-739821936)
 
 <p style="align:right">(<a href="#readme-top">back to top</a>)</p>
 
