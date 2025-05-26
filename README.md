@@ -268,9 +268,9 @@ Below are some links, that I've useful during the process of creating this proje
 [Docker-url]: https://www.docker.com/
 [Spark.org]: https://img.shields.io/badge/ApacheSpark-E25A1C?style=for-the-badge&logo=apachespark&logoColor=white
 [Spark-url]: https://spark.apache.org/
-[Github.com]: https://img.shields.io/badge/GitLab-FC6D26?style=for-the-badge&logo=laravel&logoColor=white
+[Github.com]: https://img.shields.io/badge/GitHub-%23121011.svg?style=for-the-badge&logo=github&logoColor=white
 [Github-url]: https://github.com
-[Gitlab.com]: https://img.shields.io/badge/GitHub-%23121011.svg?style=for-the-badge&logo=laravel&logoColor=white
+[Gitlab.com]: https://img.shields.io/badge/GitLab-FC6D26?style=for-the-badge&logo=gitlab&logoColor=white
 [Gitlab-url]: https://gitlab.com
 [Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
 [Bootstrap-url]: https://getbootstrap.com
