@@ -1,10 +1,5 @@
 # RPi-cluster-2025
-Description of the process of building RPi cluster
-
-## What do I have?
-  - camera [IC-7112W](https://pl.edimax.pl/edimax/merchandise/merchandise_detail/data/edimax/pl/home_network_cameras_indoor_ptz/ic-7112w/)
-  - camera [OAK-D Lite](https://docs.luxonis.com/hardware/products/OAK-D%20Lite),
-  - camera [CamSpot 5.0 WiFi 1080p](https://botland.com.pl/produkty-wycofane/15582-kamera-ip-overmax-camspot-50-wifi-1080p-5902581657732.html) (not sold already),  
+Description of the process of building Raspberry Pi cluster 
 
 
 ## Links
@@ -46,13 +41,13 @@ Description of the process of building RPi cluster
 <br />
 <div align="center">
   <a href="https://github.com/zacniewski/RPi-cluster-2025">
-    <img src="images/rpi_0001_ico___raspberry_pi_boot_drive_icon_by_korapucard_ddh41au-fullview.jpg" alt="Logo RPi">
+    <img src="images/raspberry_pi_icon_80px.png" alt="Logo RPi">
   </a>
 
 <h3 style="align:center">Rasperry Pi cluster</h3>
 
   <p style="align:center">
-    project_description
+    The project shows creating the Raspberry Pi cluster from scratch
     <br />
     <a href="https://github.com/zacniewski/RPi-cluster-2025"><strong>Explore the docs »</strong></a>
     <br />
@@ -213,7 +208,7 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE.txt -->
 ## License
 
-Distributed under the project_license. See `LICENSE.txt` for more information.
+Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 <p style="align:right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -222,7 +217,7 @@ Distributed under the project_license. See `LICENSE.txt` for more information.
 <!-- CONTACT -->
 ## Contact
 
-Your Name - [@twitter_handle](https://twitter.com/twitter_handle) - email@email_client.com
+Artur Zacniewski - [@zacniewski](https://x.com/zacniewski) - a.zacniewski@we.umg.edu.pl
 
 Project Link: [https://github.com/zacniewski/RPi-cluster-2025](https://github.com/zacniewski/RPi-cluster-2025)
 
@@ -237,6 +232,7 @@ Below are some links, that I've useful during the process of creating this proje
 * [Custom badges with Shield.io](https://javascript.plainenglish.io/how-to-make-custom-language-badges-for-your-profile-using-shields-io-d2aeaf016b6b)
 * [Simple Icons](https://simpleicons.org/)
 * [Raspberry Pi logo/wallpaper](https://www.deviantart.com/onix5/art/Raspberry-Pi-Logo-Wallpaper-4K-739821936)
+* [Raspberry Pi icon](https://icon-icons.com/icon/raspberry-pi/198019)
 
 <p style="align:right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -276,4 +272,5 @@ Below are some links, that I've useful during the process of creating this proje
 [Bootstrap-url]: https://getbootstrap.com
 [Alpine.js]: https://img.shields.io/badge/Alpine.js-8BC0D0?style=for-the-badge&logo=alpinedotjs&logoColor=white
 [Alpine-url]: https://alpinejs.dev/ 
+[twitter_handle]: zacniewski
 
