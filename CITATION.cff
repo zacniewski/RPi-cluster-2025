@@ -1,0 +1,24 @@
+# This CITATION.cff file was generated with cffinit.
+# Visit https://bit.ly/cffinit to generate yours today!
+
+cff-version: 1.2.0
+title: RaspberryPi cluster software
+message: Personalized message
+type: software
+authors:
+  - given-names: Artur
+    family-names: Zacniewski
+    email: a.zacniewski@wi.umg.edu.pl
+    affiliation: Gdynia Maritime University
+    orcid: 'https://orcid.org/0000-0002-3604-4051'
+repository-code: 'https://github.com/zacniewski/RPi-cluster-2025'
+url: 'https://zacniewski.github.io/'
+abstract: >-
+  Description of the process of building Raspberry Pi
+  cluster
+keywords:
+  - 'RaspberryPi, Django'
+license: MIT
+commit: c4645065761abdcb13c20b3a11107c59cb33d0d3
+version: '0.1'
+date-released: '2025-06-09'
