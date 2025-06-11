@@ -11,6 +11,9 @@ authors:
     email: a.zacniewski@wi.umg.edu.pl
     affiliation: Gdynia Maritime University
     orcid: 'https://orcid.org/0000-0002-3604-4051'
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.15641361
 repository-code: 'https://github.com/zacniewski/RPi-cluster-2025'
 url: 'https://zacniewski.github.io/'
 abstract: >-
@@ -19,6 +22,6 @@ abstract: >-
 keywords:
   - 'RaspberryPi, Django'
 license: MIT
-commit: c4645065761abdcb13c20b3a11107c59cb33d0d3
+commit: 90708c8fc0f151a91fb4dc02f2eea57187007bb0
 version: '0.1'
 date-released: '2025-06-09'
