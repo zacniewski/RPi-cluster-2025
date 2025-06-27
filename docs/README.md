@@ -6,3 +6,5 @@
     <li><a href="03_my_additional_devices_for_optional_usage.md">My additional devices</a></li>
     <li><a href="04_links.md">Useful links</a></li>
 </ol>
+
+[🔙 (back](../README.md) to the main page)
