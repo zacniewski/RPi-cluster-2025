@@ -7,4 +7,4 @@
     <li><a href="04_links.md">Useful links</a></li>
 </ol>
 
-[🔙 (back](tree/main//README.md) to the main page)
+[🔙 (back](https://github.com/zacniewski/RPi-cluster-2025/) to the main page)
