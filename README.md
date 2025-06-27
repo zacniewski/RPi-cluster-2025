@@ -30,7 +30,7 @@ Description of the process of building Raspberry Pi cluster
   <p style="align:center">
     The project shows creating the Raspberry Pi cluster from scratch
     <br />
-    <a href="https://github.com/zacniewski/RPi-cluster-2025"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/zacniewski/RPi-cluster-2025/docs"><strong>Explore the docs »</strong></a>
     <br />
     <br />
     <a href="https://github.com/zacniewski/RPi-cluster-2025">View Demo</a>
