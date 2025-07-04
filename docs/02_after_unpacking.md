@@ -1,36 +1,36 @@
-## How all these things look after unpacking.
+## How things look after unpacking
 This page contains photos of used devices and accessories. 
 
-### 1. Power Supply
-- 4 x power supply for Raspberry Pi 5
-![RPi power supples](images/11power_supplies_2000px.jpg)
+### 1. Raspberry Pi 5
+![Raspberry Pi 5](../images/RPi5.jpg)
 
-### 2. Raspberry Pi 5
-- 4 x Raspberry Pi 5 with 8 GB
-![RPis](images/11RPis.jpg)  
+### 2. Raspberry Pi 5 with thermal separators
+![Raspberry Pi 5](../images/RPi_with_separators.jpg)
 
-### 3. Memory Cards
-- 3 x Goodram M1AA microSD 32GB 100MB/s UHS-I Class 10 with adapter
-![RPis](images/11memory_cards.jpg)
+### 3. Armor Lite V5
+![RPis](../images/Armor_Lite_V5.jpg)
 
-### 4. Raspberry Pi SSD Kits
-- 3 x Raspberry Pi SSD Kit 256 GB
-- 1 x Raspberry Pi SSD Kit 512 GB
-![RPis](images/11256GB_kits.jpg)
+### 4. Raspberry Pi 5 with Armor Lite V5
+![RPis](../images/RPi_with_Armor_Lite.jpg)
 
-### 5. Switch 
-- 1 x TP-Link TL-SG108E
-![RPis](images/11switch.jpg)  
+### 5. M2 HAT 
+![RPis](../images/M2_HAT_512.jpg)  
 
-### 6. Voomy Power Cube S5 
-- 1 x Voomy Power Cube S5 - Power Strip 4 USB-A & 5 EU
-![RPis](images/11voomy_s5.jpg)
+### 6. M2 HAT with screws
+![RPis](../images/M2_HAT_256_with_screws.jpg)  
 
-### 7. GeeekPi 4-layer acrylic housing 
-- 1 x GeeekPi 4-layer acrylic housing with Armor Lite V5 Active Cooler radiator for Raspberry Pi 5 4GB / 8GB
-![RPis](images/11geek_pi.jpg)
+### 7. Raspberry Pi 5 with Armor Lite V5 and M2 HAT 
+![RPis](../images/RPi_with_Armor_Lite_and_M2_HAT.jpg)  
 
-### 8. Network Cables 
-- 5 x Network Cable RJ45 - RJ45, Cat.6, 0.5m
-- 1 x Network Cable UTP Ethernet Cat.6 3m
-![RPis](images/11cables.jpg)
+<hr>
+
+![RPis](../images/RPi_with_Armor_Lite_and_M2_HAT_2.jpg)  
+
+
+### 8. Screws 
+- the original screw (it was too short for version with Armor Lite and M2 HAT)
+![RPis](../images/original_screw.jpg)  
+- longer screw (I had to buy)
+![RPis](../images/longer_screw.jpg)  
+- both screws
+![RPis](../images/two_screws.jpg)  
