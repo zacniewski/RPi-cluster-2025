@@ -34,3 +34,18 @@ This page contains photos of used devices and accessories.
 ![RPis](../images/longer_screw.jpg)  
 - both screws
 ![RPis](../images/two_screws.jpg)  
+
+### 8. Tower of Raspberry Pis 
+![RPis](../images/single_segment.jpg)  
+
+<hr>
+
+![RPis](../images/single_segment_2.jpg)  
+
+<hr>
+
+![RPis](../images/RPi_tower.jpg)  
+
+<hr>
+
+![RPis](../images/RPi_tower_2.jpg)  
