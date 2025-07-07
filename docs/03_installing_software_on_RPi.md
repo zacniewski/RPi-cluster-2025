@@ -7,6 +7,7 @@
 obrazki z instalacji OS
 
 Intefejsy sieciowe
+On one machine (laptop + WiFi)
 ```bash
 $ ifconfig
 enp3s0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
@@ -35,10 +36,39 @@ wlp0s20f3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
 
+On the second machine (PC connected to switch)
+```bash
+docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
+        inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
+        ether c2:66:6f:37:b6:93  txqueuelen 0  (Ethernet)
+        RX packets 0  bytes 0 (0.0 B)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 0  bytes 0 (0.0 B)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+enp34s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
+        inet 192.168.18.17  netmask 255.255.255.0  broadcast 192.168.18.255
+        inet6 fe80::914a:7757:29e5:997  prefixlen 64  scopeid 0x20<link>
+        ether 00:d8:61:54:64:82  txqueuelen 1000  (Ethernet)
+        RX packets 173771  bytes 199545810 (199.5 MB)
+        RX errors 0  dropped 212  overruns 0  frame 0
+        TX packets 76599  bytes 17450476 (17.4 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+
+lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
+        inet 127.0.0.1  netmask 255.0.0.0
+        inet6 ::1  prefixlen 128  scopeid 0x10<host>
+        loop  txqueuelen 1000  (Local Loopback)
+        RX packets 3584  bytes 39513593 (39.5 MB)
+        RX errors 0  dropped 0  overruns 0  frame 0
+        TX packets 3584  bytes 39513593 (39.5 MB)
+        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
+```
+
 arp-scan
 ```bash
-sudo apt install arp-scan
-
+$ sudo apt install arp-scan
+$ sudo arp-scan --interface=enp34s0 192.168.18.0/24
 ```
 
 ping
