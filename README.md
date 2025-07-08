@@ -137,13 +137,6 @@ This is an example of how to list things you need to use the software and how to
 
 
 
-<!-- USAGE EXAMPLES -->
-## Usage
-
-Use this space to show useful examples of how a project can be used. Additional screenshots, code examples and demos work well in this space. You may also link to more resources.
-
-_For more examples, please refer to the [Documentation](https://example.com)_
-
 <p style="align:right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -254,4 +247,3 @@ Below are some links, that I've useful during the process of creating this proje
 [Alpine.js]: https://img.shields.io/badge/Alpine.js-8BC0D0?style=for-the-badge&logo=alpinedotjs&logoColor=white
 [Alpine-url]: https://alpinejs.dev/ 
 [twitter_handle]: zacniewski
-

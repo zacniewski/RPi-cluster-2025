@@ -6,7 +6,7 @@
 
 obrazki z instalacji OS
 
-Intefejsy sieciowe
+Interfejsy sieciowe
 On one machine (laptop + WiFi)
 ```bash
 $ ifconfig
@@ -65,28 +65,101 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
 
+The private addresses start with `192.168.18.XX` in my home network.  
+Yours could be different.
+
+
+ping the RPi, to be sure that it's in the local network
+```bash
+ping -c 5 pawn.local
+PING pawn.local (192.168.18.23) 56(84) bytes of data.
+64 bytes from 192.168.18.23: icmp_seq=1 ttl=64 time=7.55 ms
+64 bytes from 192.168.18.23: icmp_seq=2 ttl=64 time=8.93 ms
+64 bytes from 192.168.18.23: icmp_seq=3 ttl=64 time=6.45 ms
+64 bytes from 192.168.18.23: icmp_seq=4 ttl=64 time=6.60 ms
+64 bytes from 192.168.18.23: icmp_seq=5 ttl=64 time=6.55 ms
+
+--- pawn.local ping statistics ---
+5 packets transmitted, 5 received, 0% packet loss, time 4005ms
+rtt min/avg/max/mdev = 6.452/7.214/8.927/0.943 ms
+```
+
 arp-scan
 ```bash
 $ sudo apt install arp-scan
 $ sudo arp-scan --interface=enp34s0 192.168.18.0/24
+
+Interface: wlp0s20f3, type: EN10MB, MAC: dc:46:28:8b:14:c9, IPv4: 192.168.18.13
+Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
+192.168.18.1    f8:9b:6e:a0:3f:c0       Nokia Solutions and Networks GmbH & Co. KG
+192.168.18.10   d8:bb:c1:66:02:c8       Micro-Star INTL CO., LTD.
+192.168.18.11   30:9c:23:49:91:a3       Micro-Star INTL CO., LTD.
+192.168.18.4    78:c1:ae:5e:b4:26       Hangzhou Ezviz Software Co.,Ltd.
+192.168.18.19   0c:73:eb:52:b9:9f       Husty M.Styczen J.Hupert Sp.J.
+192.168.18.3    70:f7:54:50:67:88       AMPAK Technology,Inc.
+192.168.18.23   2c:cf:67:bf:e2:ec       (Unknown)
 ```
 
-ping
+Also, the following command can be used:  
 ```bash
-ping -c 5 pawn.local
-PING pawn.local (192.168.18.24) 56(84) bytes of data.
-64 bytes from 192.168.18.24: icmp_seq=1 ttl=64 time=1.33 ms
-64 bytes from 192.168.18.24: icmp_seq=2 ttl=64 time=4.09 ms
-64 bytes from 192.168.18.24: icmp_seq=3 ttl=64 time=3.38 ms
-64 bytes from 192.168.18.24: icmp_seq=4 ttl=64 time=3.32 ms
-64 bytes from 192.168.18.24: icmp_seq=5 ttl=64 time=1.78 ms
-
---- pawn.local ping statistics ---
-5 packets transmitted, 5 received, 0% packet loss, time 4004ms
-rtt min/avg/max/mdev = 1.326/2.780/4.094/1.048 ms
+$ sudo arp-scan --interface=wlp0s20f3 --localnet 
 ```
 
-SSH
+### Python Network Discovery Script
+
+For a more comprehensive network discovery tool, you can use the Python script included in this repository. This script provides more detailed information about devices in your network, including their hostnames.
+
+#### Installing Dependencies
+
+```bash
+# Install required Python packages
+pip install scapy netifaces zeroconf
+```
+
+#### Using the Script
+
+```bash
+# Navigate to the scripts directory
+cd scripts
+
+# Run the script with default settings
+./discover_hosts.py
+
+# Run with verbose output
+./discover_hosts.py --verbose
+
+# Specify a network interface
+./discover_hosts.py --interface eth0
+
+# Specify a subnet to scan
+./discover_hosts.py --subnet 192.168.1.0/24
+```
+
+#### Example Output
+
+```
+Scanning network for devices...
+Found 8 devices on the network.
+Resolving hostnames...
+
+Results:
+--------------------------------------------------------------------------------
+IP Address      MAC Address         Hostname                                
+--------------------------------------------------------------------------------
+192.168.18.1    f8:9b:6e:a0:3f:c0   router.local                            
+192.168.18.10   d8:bb:c1:66:02:c8   desktop-pc.local                        
+192.168.18.23   2c:cf:67:bf:e2:ec   pawn.local                              
+192.168.18.24   e4:5f:01:8c:57:99   knight.local                            
+192.168.18.25   e4:5f:01:8c:58:01   bishop.local                            
+192.168.18.26   e4:5f:01:8c:59:32   rook.local                              
+192.168.18.27   e4:5f:01:8c:60:45   queen.local                             
+192.168.18.28   e4:5f:01:8c:61:78   king.local                              
+--------------------------------------------------------------------------------
+```
+
+This script is particularly useful for identifying all Raspberry Pi nodes in your cluster by their hostnames.
+
+SSH to the RPi
 ```bash
 $ ssh artur@pawn.local
 The authenticity of host 'pawn.local (192.168.18.24)' can't be established.
@@ -114,5 +187,28 @@ tmpfs          tmpfs     4.0G  400K  4.0G   1% /dev/shm
 tmpfs          tmpfs     5.0M   48K  5.0M   1% /run/lock
 /dev/mmcblk0p1 vfat      510M   77M  434M  16% /boot/firmware
 tmpfs          tmpfs     806M  208K  805M   1% /run/user/1000
+```
 
+Updating and upgrading
+Good option is to create the `update_software.sh` script and run it when needed
+```bash
+echo "[1. Updating and upgrading (apt) ......]" &&
+sudo apt update &&
+sudo apt upgrade &&
+sudo apt dist-upgrade &&
+echo "" &&
+echo "[2. Cleaning Up ......]" &&
+sudo apt autoremove &&
+sudo apt autoclean &&
+sudo apt clean && 
+sudo apt autopurge &&
+echo "" &&
+echo "[3. Done ......!!!!]" &&
+echo ""
+```
+
+At the first running of the updating script it may take some time, but later it will not take too long.
+It's almost sure that system must be rebooted after script finishes its job:  
+```bash
+$ sudo reboot
 ```
