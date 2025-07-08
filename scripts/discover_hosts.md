@@ -4,7 +4,7 @@
 
 ### Network Discovery Tool
 
-The `discover_hosts.py` script allows to discover hostnames of devices in your local network. This is particularly useful when setting up a Raspberry Pi cluster to identify all the nodes.
+The `discover_hosts.py` script allows discovering hostnames of devices in your local network. This is particularly useful when setting up a Raspberry Pi cluster to identify all the nodes.
 
 #### Requirements
 

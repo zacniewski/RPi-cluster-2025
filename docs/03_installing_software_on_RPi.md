@@ -189,6 +189,14 @@ tmpfs          tmpfs     5.0M   48K  5.0M   1% /run/lock
 tmpfs          tmpfs     806M  208K  805M   1% /run/user/1000
 ```
 
+We can't see the NVMe disk at this time because it's not ready.
+To check that NVMe drive is connected correctly, boot your Raspberry Pi from another storage device (such as an SD card) and run:
+```bash
+$ ls -l /dev/nvme*.
+
+```
+It's there :)
+
 Updating and upgrading
 Good option is to create the `update_software.sh` script and run it when needed
 ```bash
@@ -208,7 +216,58 @@ echo ""
 ```
 
 At the first running of the updating script it may take some time, but later it will not take too long.
-It's almost sure that system must be rebooted after script finishes its job:  
+It's almost sure that the system must be rebooted after a script finishes its job:  
 ```bash
 $ sudo reboot
 ```
+
+Changing hostname (if needed)
+
+To set or change the network name (hostname) of your Raspberry Pi, you can use the raspi-config tool, hostnamectl, or by directly editing configuration files. The most straightforward method is using raspi-config. 
+Using raspi-config:
+
+    Open `raspi-config` by running `sudo raspi-config` in the terminal.
+    Navigate to "Network Options" and select "Hostname".
+    Enter your desired hostname and confirm.
+    Reboot your Raspberry Pi for the changes to take effect. 
+
+Using hostnamectl:
+
+    Check the current hostname with hostnamectl or hostname.
+    Change the hostname using sudo hostnamectl set-hostname your_new_hostname.
+    Edit the `/etc/hosts` file to reflect the change, replacing the old hostname with the new one.
+    Reboot your Raspberry Pi. 
+
+Directly Editing Files:
+
+    Open the `/etc/hostname` file with a text editor (e.g., sudo nano /etc/hostname).
+    Change the existing hostname to your desired name and save the file.
+    Open the `/etc/hosts` file and change the hostname there as well.
+    Reboot your Raspberry Pi. 
+
+Important Considerations:
+
+    The hostname is used to identify your Raspberry Pi on the network. 
+
+Choose a descriptive and easy-to-remember hostname, especially if you have multiple Raspberry Pis. 
+Ensure the hostname adheres to the allowed character set (letters, numbers, and hyphens). 
+After changing the hostname, other devices on your network may need to be refreshed or rebooted to see the change. 
+
+M.2 HAT+
+Link to [official documentation](https://www.raspberrypi.com/documentation/accessories/m2-hat-plus.html)
+
+Boot from NVMe
+
+To boot from an NVMe drive attached to the M.2 HAT+, complete the following steps:
+
+    1. Format your NVMe drive using Raspberry Pi Imager. You can do this from your Raspberry Pi if you already have an SD card with a Raspberry Pi OS image.
+
+    2. Boot your Raspberry Pi into Raspberry Pi OS using an SD card or USB drive to alter the boot order in the persistent on-board EEPROM configuration.
+
+    3. In a terminal on your Raspberry Pi, run `sudo raspi-config` to open the Raspberry Pi Configuration CLI.
+
+    4. Under Advanced Options > Boot Order, choose `NVMe/USB boot`. Then, exit raspi-config with Finish or the Escape key.
+
+    5. Reboot your Raspberry Pi with `sudo reboot`.
+
+We need a micro-HDMI cable to connect our RPi to a monitor.
