@@ -1,13 +1,29 @@
-## Software installation for RPi cluster  
+## Software installation for a single RPi (SD card)  
 
-1. RPi Imager  
+#### 1. RPi Imager is recommended for installation OS on Raspberry Pi
 - link to [official page](https://www.raspberrypi.com/software/),  
-- link to [GitHub](https://github.com/raspberrypi/rpi-imager).  
+- link to [GitHub](https://github.com/raspberrypi/rpi-imager),  
+- choose a device, OS, and storage (SD card),  
 
-obrazki z instalacji OS
+![RPi Imager](../images/Rpi-imager.png)  
+- choose 'Edit settings',  
 
-Interfejsy sieciowe
-On one machine (laptop + WiFi)
+![RPi Imager](../images/Rpi-imager-2.png)  
+
+- set hostname, username, password, Wi-Fi (if available) and locale settings,
+![RPi Imager](../images/Rpi-Imager-3.png)  
+
+- enable SSH,  
+![RPi Imager](../images/RPi-Imager-4.png)  
+- click 'Yes' to apply settings,  
+![RPi Imager](../images/RPi-Imager-5.png)  
+- writing OS to the SD card should start
+![RPi Imager](../images/RPi-Imager-6.png)
+
+
+#### 2. Network interfaces
+- it's good to know the names of interfaces and the addresses of your machine(s) in the local network.  
+- my first machine (laptop + Wi-Fi):  
 ```bash
 $ ifconfig
 enp3s0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
@@ -36,7 +52,7 @@ wlp0s20f3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
 
-On the second machine (PC connected to switch)
+- the second machine (PC connected to switch)
 ```bash
 docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
         inet 172.17.0.1  netmask 255.255.0.0  broadcast 172.17.255.255
@@ -65,11 +81,8 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
 
-The private addresses start with `192.168.18.XX` in my home network.  
-Yours could be different.
-
-
-ping the RPi, to be sure that it's in the local network
+- as you see the private addresses start with `192.168.18.XX` in my home network, yours could be different.
+- I set the `pawn.local` name to the hostname and I can ping the RPi, to be sure that it's in the local network:  
 ```bash
 ping -c 5 pawn.local
 PING pawn.local (192.168.18.23) 56(84) bytes of data.
@@ -84,82 +97,7 @@ PING pawn.local (192.168.18.23) 56(84) bytes of data.
 rtt min/avg/max/mdev = 6.452/7.214/8.927/0.943 ms
 ```
 
-arp-scan
-```bash
-$ sudo apt install arp-scan
-$ sudo arp-scan --interface=enp34s0 192.168.18.0/24
-
-Interface: wlp0s20f3, type: EN10MB, MAC: dc:46:28:8b:14:c9, IPv4: 192.168.18.13
-Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
-192.168.18.1    f8:9b:6e:a0:3f:c0       Nokia Solutions and Networks GmbH & Co. KG
-192.168.18.10   d8:bb:c1:66:02:c8       Micro-Star INTL CO., LTD.
-192.168.18.11   30:9c:23:49:91:a3       Micro-Star INTL CO., LTD.
-192.168.18.4    78:c1:ae:5e:b4:26       Hangzhou Ezviz Software Co.,Ltd.
-192.168.18.19   0c:73:eb:52:b9:9f       Husty M.Styczen J.Hupert Sp.J.
-192.168.18.3    70:f7:54:50:67:88       AMPAK Technology,Inc.
-192.168.18.23   2c:cf:67:bf:e2:ec       (Unknown)
-```
-
-Also, the following command can be used:  
-```bash
-$ sudo arp-scan --interface=wlp0s20f3 --localnet 
-```
-
-### Python Network Discovery Script
-
-For a more comprehensive network discovery tool, you can use the Python script included in this repository. This script provides more detailed information about devices in your network, including their hostnames.
-
-#### Installing Dependencies
-
-```bash
-# Install required Python packages
-pip install scapy netifaces zeroconf
-```
-
-#### Using the Script
-
-```bash
-# Navigate to the scripts directory
-cd scripts
-
-# Run the script with default settings
-./discover_hosts.py
-
-# Run with verbose output
-./discover_hosts.py --verbose
-
-# Specify a network interface
-./discover_hosts.py --interface eth0
-
-# Specify a subnet to scan
-./discover_hosts.py --subnet 192.168.1.0/24
-```
-
-#### Example Output
-
-```
-Scanning network for devices...
-Found 8 devices on the network.
-Resolving hostnames...
-
-Results:
---------------------------------------------------------------------------------
-IP Address      MAC Address         Hostname                                
---------------------------------------------------------------------------------
-192.168.18.1    f8:9b:6e:a0:3f:c0   router.local                            
-192.168.18.10   d8:bb:c1:66:02:c8   desktop-pc.local                        
-192.168.18.23   2c:cf:67:bf:e2:ec   pawn.local                              
-192.168.18.24   e4:5f:01:8c:57:99   knight.local                            
-192.168.18.25   e4:5f:01:8c:58:01   bishop.local                            
-192.168.18.26   e4:5f:01:8c:59:32   rook.local                              
-192.168.18.27   e4:5f:01:8c:60:45   queen.local                             
-192.168.18.28   e4:5f:01:8c:61:78   king.local                              
---------------------------------------------------------------------------------
-```
-
-This script is particularly useful for identifying all Raspberry Pi nodes in your cluster by their hostnames.
-
-SSH to the RPi
+- now we can SSH to the RPi:  
 ```bash
 $ ssh artur@pawn.local
 The authenticity of host 'pawn.local (192.168.18.24)' can't be established.
@@ -189,16 +127,17 @@ tmpfs          tmpfs     5.0M   48K  5.0M   1% /run/lock
 tmpfs          tmpfs     806M  208K  805M   1% /run/user/1000
 ```
 
-We can't see the NVMe disk at this time because it's not ready.
-To check that NVMe drive is connected correctly, boot your Raspberry Pi from another storage device (such as an SD card) and run:
+- we can't see the NVMe disk at this time because it's not ready.
+To check that NVMe drive is connected correctly via M.2 HAT+, we can try:  
 ```bash
 $ ls -l /dev/nvme*.
-
+crw------- 1 root root 245, 0 Jul  9 14:58 /dev/nvme0
+brw-rw---- 1 root disk 259, 0 Jul  9 14:58 /dev/nvme0n1
 ```
 It's there :)
 
-Updating and upgrading
-Good option is to create the `update_software.sh` script and run it when needed
+#### 3. Updating and upgrading
+- good option is to run the following commands (or put them in `update_software.sh` script) and use it when needed:  
 ```bash
 echo "[1. Updating and upgrading (apt) ......]" &&
 sudo apt update &&
@@ -214,14 +153,19 @@ echo "" &&
 echo "[3. Done ......!!!!]" &&
 echo ""
 ```
+- you can make the script executable by `chmod +x update_software.sh`
 
-At the first running of the updating script it may take some time, but later it will not take too long.
-It's almost sure that the system must be rebooted after a script finishes its job:  
-```bash
-$ sudo reboot
-```
+- at the first running of the updating script on the freshly installed OS, it may take some time, but later it will not take too long.
+- it's almost sure that the system must be rebooted after a script finishes its job:  
+    ```bash
+    $ sudo reboot
+    ```
 
-Changing hostname (if needed)
+#### 4. Changing hostname (if needed)
+
+Important Considerations:
+
+    The hostname is used to identify your Raspberry Pi on the network. 
 
 To set or change the network name (hostname) of your Raspberry Pi, you can use the raspi-config tool, hostnamectl, or by directly editing configuration files. The most straightforward method is using raspi-config. 
 Using raspi-config:
@@ -245,29 +189,7 @@ Directly Editing Files:
     Open the `/etc/hosts` file and change the hostname there as well.
     Reboot your Raspberry Pi. 
 
-Important Considerations:
-
-    The hostname is used to identify your Raspberry Pi on the network. 
 
 Choose a descriptive and easy-to-remember hostname, especially if you have multiple Raspberry Pis. 
 Ensure the hostname adheres to the allowed character set (letters, numbers, and hyphens). 
-After changing the hostname, other devices on your network may need to be refreshed or rebooted to see the change. 
-
-M.2 HAT+
-Link to [official documentation](https://www.raspberrypi.com/documentation/accessories/m2-hat-plus.html)
-
-Boot from NVMe
-
-To boot from an NVMe drive attached to the M.2 HAT+, complete the following steps:
-
-    1. Format your NVMe drive using Raspberry Pi Imager. You can do this from your Raspberry Pi if you already have an SD card with a Raspberry Pi OS image.
-
-    2. Boot your Raspberry Pi into Raspberry Pi OS using an SD card or USB drive to alter the boot order in the persistent on-board EEPROM configuration.
-
-    3. In a terminal on your Raspberry Pi, run `sudo raspi-config` to open the Raspberry Pi Configuration CLI.
-
-    4. Under Advanced Options > Boot Order, choose `NVMe/USB boot`. Then, exit raspi-config with Finish or the Escape key.
-
-    5. Reboot your Raspberry Pi with `sudo reboot`.
-
-We need a micro-HDMI cable to connect our RPi to a monitor.
+After changing the hostname, other devices on your network may need to be refreshed or rebooted to see the change.  

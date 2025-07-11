@@ -144,6 +144,7 @@ wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
 the above method doesn't work!!!!
 
 Now, the Network Manager is an official tool to change the static IP of RPi
+Solution taken from [here](https://www.abelectronics.co.uk/kb/article/31/set-a-static-ip-address-on-raspberry-pi-os-bookworm).  
 
 ```bash
 artur@queen-cluster:~ $ sudo nmcli -p connection show
