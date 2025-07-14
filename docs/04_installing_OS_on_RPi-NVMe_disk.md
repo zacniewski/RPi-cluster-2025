@@ -53,7 +53,8 @@ locale: Cannot set LC_ALL to default locale: No such file or directory
 - solution comes from the [Raspberry Pi forum](https://forums.raspberrypi.com/viewtopic.php?f=50&t=11870),  
 - you should check your locale:  
     - `sudo raspi-config`,  
-    - check `Localisation Options -> Locale`
+    - check `Localisation Options -> Locale`,  
+    - choose the locale you need and also pick the default option.  
 
 - create or update the `/etc/environment` file with the locale content:  
 ```bash
@@ -71,7 +72,7 @@ LC_TYPE=en_GB.UTF-8
 ```bash
 $ sudo apt install arp-scan
 ```
-- check the interface name and local IP address with `ifconfig` and use it:  
+- check the interface name and local IP address with `ifconfig` and use it with the name of proper interface:  
 
 ```bash
 $ sudo arp-scan --interface=enp34s0 192.168.18.0/24
@@ -84,18 +85,18 @@ Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
 192.168.18.26   2c:cf:67:bf:e9:84       (Unknown)
 192.168.18.27   2c:cf:67:bf:d3:bb       (Unknown)
 ```
-> I've just left the information about the router and our four RPis
-> In my network I can't see the vendor name next to the RPis, only 'Unknown' information
+> I've just left only the information about the router and our four RPis.
+> In my network I can't see the vendor name next to the RPis, only 'Unknown' information, but maybe you'll see it.
 
-Also, the following command can be used:  
+- also, the following command can be used:  
 ```bash
 $ sudo arp-scan --interface=enp34s0 --localnet 
 ```
 
 #### 4. Setting static IP inRaspberry Pi
 - the problem: every time you reboot your Pi, the IP address can change, based on what the router decides to assign at the moment,  
-- fortunately, there's a simple way to make sure that your Raspberry Pi always gets the same IP address on your local network or, at least, always tries to get the same address on your local network,, 
-- solutions were found [here](https://botland.store/content/71-How-to-set-a-static-IP-in-Raspberry-Pi) and [here](https://www.tomshardware.com/how-to/static-ip-raspberry-pi),  
+- fortunately, there's a simple way to make sure that your Raspberry Pi always gets the same IP address on your local network or, at least, always tries to get the same address on your local network, 
+- some solutions were found [here](https://botland.store/content/71-How-to-set-a-static-IP-in-Raspberry-Pi) and [here](https://www.tomshardware.com/how-to/static-ip-raspberry-pi), but with newer version of  
 - when you check `ifconfig` for your Raspberry Pi, you can see the following interfaces with different IP addresses:
 ```bash
 eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
@@ -128,23 +129,26 @@ wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
  
 ```
 - the names of these interfaces will be used to change the IP of our RPi,  
-- `sudo nano /etc/dhcpcd.conf` and paste the following content to this file:  
-```bash
-    interface eth0
-    static ip_address=192.168.18.101/24
-    static routers=192.168.18.1
-    static domain_name_servers=192.168.18.1
-    
-    interface wlan0
-    static ip_address=192.168.18.201/24
-    static routers=192.168.18.1
-    static domain_name_servers=192.168.18.1
-```
+- with the release of Raspberry Pi OS Bookworm, networking on the Raspberry Pi was changed to use NetworkManager as the standard method for managing the network configuration.  
+- previous Raspberry Pi OS versions used `dhcpcd` for network management,  
+- it was done in the following way (don't do it!):  
+  - `sudo nano /etc/dhcpcd.conf` and we had to paste the following content to this file:  
+    ```bash
+        interface eth0
+        static ip_address=192.168.18.101/24
+        static routers=192.168.18.1
+        static domain_name_servers=192.168.18.1
+        
+        interface wlan0
+        static ip_address=192.168.18.201/24
+        static routers=192.168.18.1
+        static domain_name_servers=192.168.18.1
+    ```
+- the above method doesn't work with the newest RPi OS!
 
-the above method doesn't work!!!!
-
-Now, the Network Manager is an official tool to change the static IP of RPi
-Solution taken from [here](https://www.abelectronics.co.uk/kb/article/31/set-a-static-ip-address-on-raspberry-pi-os-bookworm).  
+- now, the Network Manager is an official tool to change the static IP of RPi,  
+- solution taken from [here](https://www.abelectronics.co.uk/kb/article/31/set-a-static-ip-address-on-raspberry-pi-os-bookworm),  
+- the change of IP address is shown on the `queen` machine:  
 
 ```bash
 artur@queen-cluster:~ $ sudo nmcli -p connection show
@@ -156,10 +160,20 @@ NAME                UUID                                  TYPE      DEVICE
 Wired connection 1  cdfa84e0-1cc9-3966-ab9e-9c097f037cfe  ethernet  eth0   
 lo                  33b70138-a642-4c5a-9c48-c719cec5035e  loopback  lo     
 preconfigured       c7923d29-7801-4eb5-9e3a-bacd14f4cb1b  wifi      wlan0  
+
 artur@queen-cluster:~ $ sudo nmcli c mod "Wired connection 1" ipv4.addresses 192.168.18.104/24 ipv4.method manual
 artur@queen-cluster:~ $ sudo nmcli con mod "Wired connection 1" ipv4.gateway 192.168.18.1
 artur@queen-cluster:~ $ sudo nmcli con mod "Wired connection 1" ipv4.dns 192.168.18.1
 artur@queen-cluster:~ $ sudo nmcli c down "Wired connection 1" && sudo nmcli c up "Wired connection 1"
+Connection 'Wired connection 1' successfully deactivated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/3)
+Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/5)
+
+artur@queen-cluster:~ $ sudo nmcli c mod "preconfigured" ipv4.addresses 192.168.18.204/24 ipv4.method manual
+artur@queen-cluster:~ $ sudo nmcli con mod "preconfigured" ipv4.gateway 192.168.18.1
+artur@queen-cluster:~ $ sudo nmcli con mod "preconfigured" ipv4.dns 192.168.18.1
+artur@queen-cluster:~ $ sudo nmcli c down "preconfigured" && sudo nmcli c up "preconfigured"
+Connection 'preconfigured' successfully deactivated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/2)
+Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/4)
 ```
 
 - after reboot
@@ -171,31 +185,36 @@ artur@queen-cluster:~ $ nmcli -p connection show "Wired connection 1"
 connection.id:                          Wired connection 1
 ipv4.addresses:                         192.168.18.104/24
 
+artur@queen-cluster:~ $ nmcli -p connection show "preconfigured"
+===============================================================================
+                  Connection profile details (preconfigured)
+===============================================================================
+connection.id:                          preconfigured
+ipv4.addresses:                         192.168.18.204/24
+```
+
+- checking `ping`
+```
 $ ping -c 5 queen-cluster.local
 PING queen-cluster.local (192.168.18.104) 56(84) bytes of data.
 64 bytes from 192.168.18.104: icmp_seq=1 ttl=64 time=0.143 ms
+```  
+
+- scanning network again with `arp-scan`
+
+```bash
+$ sudo arp-scan --interface=enp34s0 192.168.18.0/24
 ```
 
-#### Example Output
+#### Summary of IP changes
 
-```
-Scanning network for devices...
-Found 8 devices on the network.
-Resolving hostnames...
+| Hostname                   | IP Address (eth0) | IP Address (wlan0) |        
+|----------------------------|-------------------|--------------------|
+| pawn-cluster.local         | 192.168.18.101    | 192.168.18.201     |           
+| knight-cluster.local       | 192.168.18.102    | 192.168.18.202     |          
+| rook-cluster.local         | 192.168.18.103    | 192.168.18.203     |         
+| queen-cluster.local        | 192.168.18.104    | 192.168.18.204     |          
 
-Results:
---------------------------------------------------------------------------------
-IP Address      MAC Address         Hostname                                
---------------------------------------------------------------------------------
-192.168.18.1    f8:9b:6e:a0:3f:c0   router.local                            
-192.168.18.10   d8:bb:c1:66:02:c8   desktop-pc.local                        
-192.168.18.23   2c:cf:67:bf:e2:ec   pawn.local                              
-192.168.18.24   e4:5f:01:8c:57:99   knight.local                            
-192.168.18.25   e4:5f:01:8c:58:01   bishop.local                            
-192.168.18.26   e4:5f:01:8c:59:32   rook.local                              
-192.168.18.27   e4:5f:01:8c:60:45   queen.local                             
-192.168.18.28   e4:5f:01:8c:61:78   king.local                              
---------------------------------------------------------------------------------
-```
 
-This script is particularly useful for identifying all Raspberry Pi nodes in your cluster by their hostnames.
+#### Closing the OS with terminal
+- you can use the `sudo poweroff` command to turn off your RPi with command line.  

@@ -49,3 +49,18 @@ This page contains photos of used devices and accessories.
 <hr>
 
 ![RPis](../images/RPi_tower_2.jpg)  
+
+### 9. Connecting cables 
+-  power cables,  
+![RPis](../images/RPis-with-power-cables.jpg)  
+
+<hr>
+
+- network cables
+![RPis](../images/RPis-with-network-cables.jpg)  
+
+
+<hr>
+
+- switch with cables
+![RPis](../images/switch_with_4_cables.jpg)  
