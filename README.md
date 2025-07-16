@@ -76,8 +76,9 @@ Description of the process of building Raspberry Pi cluster
 
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
-Here's a blank template to get started. To avoid retyping too much info, do a search and replace with your text editor for the following: `zacniewski`, `RPi-cluster-2025`, `twitter_handle`, `linkedin_username`, `email_client`, `email`, `project_title`, `project_description`, `project_license`
-
+:zap: For some time now, I've been tempted to build a cluster using Raspberry Pi minicomputers.  
+:muscle: To experiment with network configuration, containerization, web applications, distributed computing, and a few other interesting topics.  
+:wink: I hope the information in the following documentation will be useful to some people.
 <p style="align:right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -101,41 +102,34 @@ Here's a blank template to get started. To avoid retyping too much info, do a se
 <!-- GETTING STARTED -->
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+:information_source: All things needed to start are mentioned at the beginning of the documentation.  
+:information_source: The operating system used in this project is Linux.  
+:information_source: All used software is free software, under a different type of licenses.  
 
 ### Prerequisites
 
-This is an example of how to list things you need to use the software and how to install them.
-* npm
-  ```sh
-  npm install npm@latest -g
-  ```
+:information_source: I've used four Raspberry Pi 5 microcomputers to build a cluster.  
+:information_source: You can use small local networ of PCs (or laptops) with Unix-based systems to do some experiments, etc.  
+:information_source: Of course, you don't have to do it, but you can use this project to build your version of cluster or to get some tips and tricks from my experience.  
+
 
 ### Installation
 
-1. Get a free API Key at [https://example.com](https://example.com)
-2. Clone the repo
+1. Read the [documentation](https://github.com/zacniewski/RPi-cluster-2025/tree/main/docs).  
+2. Clone the repo.
    ```sh
    git clone https://github.com/zacniewski/RPi-cluster-2025.git
    ```
-3. Install NPM packages
-   ```sh
-   npm install
-   ```
-4. Enter your API in `config.js`
-   ```js
-   const API_KEY = 'ENTER YOUR API';
-   ```
-5. Change git remote url to avoid accidental pushes to base project
-   ```sh
-   git remote set-url origin zacniewski/RPi-cluster-2025
-   git remote -v # confirm the changes
-   ```
+3. Manage IP addresses of your machines in local network.
 
-<p style="align:right">(<a href="#readme-top">back to top</a>)</p>
+4. Install necessary software (described in the documentation).
+  - Docker 
+  - uv  
 
-
+5. Install Python packages.
+  - create virtual environment with `uv` or `pip`
+  - activate it
+  - install packages
 
 <p style="align:right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -144,10 +138,20 @@ This is an example of how to list things you need to use the software and how to
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [x] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+- [x] Putting everything together (RPi, power supplies, drives, cables, etc.)
+- [x] Installing the operating system on a micro SD card
+- [x] Installing the operating system on NVMe drives
+    - [x] Configuring IP addresses in the local network
+- [x] Installing Docker on Raspberry Pi
+- [ ] Django web application for cluster monitoring
+    - [ ] Using uv for managing packages
+- [ ] Installation of distributed computing software
+    - [ ] .........
+- [ ] Connecting cameras and external sensors
+    - [ ] .........
+- [ ] VPN installation and configuration
+    - [ ] .........  
+
 
 See the [open issues](https://github.com/zacniewski/RPi-cluster-2025/issues) for a full list of proposed features (and known issues).
 
@@ -201,7 +205,7 @@ Project Link: [https://github.com/zacniewski/RPi-cluster-2025](https://github.co
 
 <!-- ACKNOWLEDGMENTS -->
 ## Acknowledgments
-Below are some links, that I've useful during the process of creating this project.  
+Below are some links, that I've found useful during the process of creating this project:  
 * [Best README template](https://github.com/othneildrew/Best-README-Template/blob/main/README.md)
 * [Custom badges with Shield.io](https://javascript.plainenglish.io/how-to-make-custom-language-badges-for-your-profile-using-shields-io-d2aeaf016b6b)
 * [Simple Icons](https://simpleicons.org/)
