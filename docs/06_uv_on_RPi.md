@@ -21,5 +21,60 @@ To add $HOME/.local/bin to your PATH, either restart your shell or run:
 artur@pawn-cluster:~ $ source $HOME/.local/bin/env
 artur@pawn-cluster:~ $ uv --version
 uv 0.7.21
+```
 
+- I've also installed `uv` on my PC, where I'll be developing the Django project,  
+- to get information about `uv` commands just use:  
+```bash 
+uv --help
+```
+
+- I'll start from the traditional version - with `SQLite` database and development server (it will be later modified and improved),   
+```bash
+$ uv init django_rpi_cluster
+Initialized project `django-rpi-cluster` at `/home/artur/Desktop/PROJECTS/RPi-cluster-2025/django_rpi_cluster
+ 
+$ cd django_rpi_cluster/
+$ uv sync
+
+Using CPython 3.12.3 interpreter at: /usr/bin/python3.12
+Creating virtual environment at: .venv
+Resolved 1 package in 2ms
+Audited in 0.00ms
+
+$ uv add django                                                                                                                                                                                       
+Resolved 5 packages in 563ms
+Prepared 3 packages in 1.36s
+Installed 3 packages in 175ms
+ + asgiref==3.9.1
+ + django==5.2.4
+ + sqlparse==0.5.3
+```
+
+- we can check installed packages with `uv tree`:  
+```bash
+$ uv tree                                                                                                                                                                                       
+Resolved 5 packages in 1ms
+django-rpi-cluster v0.1.0
+└── django v5.2.4
+    ├── asgiref v3.9.1
+    └── sqlparse v0.5.3
+```
+
+- starting a new Django project:  
+```bash
+$ uv run django-admin startproject core .
+$ uv run manage.py runserver                                                                                                                                                                          
+
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+
+You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.                                                   
+Run 'python manage.py migrate' to apply them.
+July 16, 2025 - 18:14:17
+Django version 5.2.4, using settings 'core.settings'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
 ```
