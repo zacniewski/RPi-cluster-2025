@@ -221,6 +221,7 @@ Below are some links, that I've found useful during the process of creating this
 * [Simple Icons](https://simpleicons.org/)
 * [Raspberry Pi logo/wallpaper](https://www.deviantart.com/onix5/art/Raspberry-Pi-Logo-Wallpaper-4K-739821936)
 * [Raspberry Pi icon](https://icon-icons.com/icon/raspberry-pi/198019)
+* [Chess icons](https://fontawesome.com/search?q=chess&o=r&ic=free) from FontAwesome
 
 <p style="align:right">(<a href="#readme-top">back to top</a>)</p>
 
