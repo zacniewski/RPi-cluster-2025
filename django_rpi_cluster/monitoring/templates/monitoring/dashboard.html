@@ -1,0 +1,74 @@
+{% extends 'monitoring/base.html' %}
+
+{% block title %}Dashboard - RPi Cluster Monitoring{% endblock %}
+
+{% block content %}
+<h1 class="title has-text-centered">RPi Cluster Monitoring Dashboard</h1>
+<h2 class="subtitle has-text-centered">System Status Overview</h2>
+
+<!-- First row of cards -->
+<div class="columns is-multiline">
+    <div class="column is-half">
+        <a href="{% url 'monitoring:dashboard' %}" class="card-link">
+            <div class="card">
+                <div class="card-content">
+                    <div class="icon-container">
+                        <i class="fas fa-chess-queen fa-5x" style="color: black;"></i>
+                    </div>
+                    <p class="title is-4">System Status</p>
+                    <p class="subtitle is-6">Current system health</p>
+                    <p>All systems operational</p>
+                </div>
+            </div>
+        </a>
+    </div>
+    
+    <div class="column is-half">
+        <a href="{% url 'monitoring:dashboard' %}" class="card-link">
+            <div class="card">
+                <div class="card-content">
+                    <div class="icon-container">
+                        <i class="fas fa-chess-rook fa-5x" style="color: black;"></i>
+                    </div>
+                    <p class="title is-4">Memory Usage</p>
+                    <p class="subtitle is-6">RAM allocation</p>
+                    <p>4.2 GB / 8.0 GB (52.5%)</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- Second row of cards -->
+<div class="columns is-multiline">
+    <div class="column is-half">
+        <a href="{% url 'monitoring:dashboard' %}" class="card-link">
+            <div class="card">
+                <div class="card-content">
+                    <div class="icon-container">
+                        <i class="fas fa-chess-knight fa-5x" style="color: black;"></i>
+                    </div>
+                    <p class="title is-4">CPU Load</p>
+                    <p class="subtitle is-6">Processor utilization</p>
+                    <p>25% average across all cores</p>
+                </div>
+            </div>
+        </a>
+    </div>
+    
+    <div class="column is-half">
+        <a href="{% url 'monitoring:dashboard' %}" class="card-link">
+            <div class="card">
+                <div class="card-content">
+                    <div class="icon-container">
+                        <i class="fas fa-chess-pawn fa-5x" style="color: black;"></i>
+                    </div>
+                    <p class="title is-4">Storage</p>
+                    <p class="subtitle is-6">Disk space usage</p>
+                    <p>120 GB / 256 GB (46.9%)</p>
+                </div>
+            </div>
+        </a>
+    </div>
+</div>
+{% endblock %}

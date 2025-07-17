@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}RPi Cluster Monitoring{% endblock %}</title>
+    
+    <!-- Bulma CSS Framework -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.4/css/bulma.min.css">
+    
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    
+    <!-- Custom CSS -->
+    <style>
+        html {
+            height: 100%;
+        }
+        
+        body {
+            min-height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .section {
+            flex: 1 0 auto;
+        }
+        
+        .footer {
+            padding: 1.5rem;
+            flex-shrink: 0;
+        }
+        
+        .card {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .card-content {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        
+        .icon-container {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .chess-icons {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: #f5f5f5;
+        }
+        
+        .chess-icons i {
+            margin: 0 1rem;
+            color: black;
+        }
+        
+        .card-link {
+            display: block;
+            height: 100%;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .card-link:hover {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="{% url 'monitoring:dashboard' %}">
+                <strong>RPi Cluster Monitoring</strong>
+            </a>
+            
+            <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasic">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+        
+        <div id="navbarBasic" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="{% url 'monitoring:dashboard' %}">
+                    Dashboard
+                </a>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Main Content -->
+    <section class="section">
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer has-background-light">
+        <div class="content has-text-centered">
+            <p>
+                <strong>RPi Cluster Monitoring</strong> - Developed with Django, Bulma, and FontAwesome
+            </p>
+            <p>
+                &copy; {% now "Y" %} RPi Cluster Project
+            </p>
+        </div>
+    </footer>
+    
+    <!-- JavaScript for Navbar Toggle -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Get all "navbar-burger" elements
+            const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+            
+            // Add a click event on each of them
+            $navbarBurgers.forEach(el => {
+                el.addEventListener('click', () => {
+                    // Get the target from the "data-target" attribute
+                    const target = el.dataset.target;
+                    const $target = document.getElementById(target);
+                    
+                    // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+                    el.classList.toggle('is-active');
+                    $target.classList.toggle('is-active');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
