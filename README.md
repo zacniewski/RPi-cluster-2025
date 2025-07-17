@@ -87,7 +87,7 @@ Description of the process of building Raspberry Pi cluster
 [![Product Name Screen Shot][product-screenshot]](https://example.com)
 
 :zap: For some time now, I've been tempted to build a cluster using Raspberry Pi minicomputers.  
-:muscle: To experiment with network configuration, containerization, web applications, distributed computing, and a few other interesting topics.  
+:muscle: To experiment with network configuration, containerization, web applications, CI/CD, distributed computing, and a few other interesting topics.  
 :wink: I hope the information in the following documentation will be useful to some people.
 <p style="align:right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -119,7 +119,7 @@ Description of the process of building Raspberry Pi cluster
 ### Prerequisites
 
 :information_source: I've used four Raspberry Pi 5 microcomputers to build a cluster.  
-:information_source: You can use small local networ of PCs (or laptops) with Unix-based systems to do some experiments, etc.  
+:information_source: You can use a small local networ of PCs (or laptops) with Unix-based systems to do some experiments, etc.  
 :information_source: Of course, you don't have to do it, but you can use this project to build your version of cluster or to get some tips and tricks from my experience.  
 
 
@@ -130,16 +130,16 @@ Description of the process of building Raspberry Pi cluster
    ```sh
    git clone https://github.com/zacniewski/RPi-cluster-2025.git
    ```
-3. Manage IP addresses of your machines in local network.
+3. Manage IP addresses of your machines in the local network.
 
 4. Install necessary software (described in the documentation).
-  - Docker 
-  - uv  
+  - Docker, 
+  - uv.  
 
 5. Install Python packages.
-  - create virtual environment with `uv` or `pip`
-  - activate it
-  - install packages
+  - create virtual environment with `uv` or `pip`,
+  - activate it,
+  - install packages.
 
 <p style="align:right">(<a href="#readme-top">back to top</a>)</p>
 

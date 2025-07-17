@@ -78,3 +78,22 @@ Django version 5.2.4, using settings 'core.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
+
+- let's add an application called `monitoring`:  
+```bash
+$ uv run manage.py startapp monitoring
+```
+
+- let's install the [psutil](https://github.com/giampaolo/psutil) package that will be used for process and system monitoring:  
+```bash
+$ uv add psutil
+```
+
+- let's add the [python-decouple](https://pypi.org/project/python-decouple/) package that helps you to organize your settings so that you can change parameters without having to redeploy your app:  
+```bash
+$ uv add python-decouple
+```
+
+- now we need to create `.env` file and store there vulnerable parameters and credentials,  
+- all information about using `python-decouple` is available in the aforementioned documentation!
+> Of course, we must add the `.env` to `.gitignore`!
