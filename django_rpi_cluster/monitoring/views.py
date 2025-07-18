@@ -66,8 +66,7 @@ def system_parameters(request):
         "load_avg": load_avg,
         "process_count": process_count,
     }
-    print(context)
-    
+
     return render(request, 'monitoring/system_parameters.html', context)
 
 def remote_script_execution(request):
@@ -110,6 +109,9 @@ def remote_script_execution(request):
             # Get the output
             script_output = stdout.read().decode('utf-8')
             script_output = script_output.replace("'", '"')
+            print(len(script_output))
+            print(len(script_output.strip()))
+            print(script_output[355:])
             y = json.loads(script_output)
             error_output = stderr.read().decode('utf-8')
             
@@ -128,6 +130,7 @@ def remote_script_execution(request):
         'page_title': 'Remote Script Execution',
         'connection_status': connection_status,
         'script_output': script_output,
+        'memory': y["memory"],
         'error_message': error_message,
         'ssh_host': ssh_host,
         'ssh_username': ssh_username,

@@ -77,6 +77,19 @@
     {% endif %}
 {% endif %}
 
+<div class="box">
+    <h3 class="title is-4">Memory Information</h3>
+    <div class="content">
+        <p><strong>Total Memory:</strong> {{ memory.0|filesizeformat }}</p>
+        <p><strong>Available Memory:</strong> {{ memory.1|filesizeformat }} ({{ memory.4|floatformat:1 }}% used)</p>
+        <p><strong>Used Memory:</strong> {{ memory.2|filesizeformat }}</p>
+        <p><strong>Free Memory:</strong> {{ memory.3|filesizeformat }}</p>
+
+        <progress class="progress {% if memory.4 < 50 %}is-success{% elif memory.4 < 80 %}is-warning{% else %}is-danger{% endif %}"
+                  value="{{ memory.4 }}" max="100">{{ memory.4 }}%</progress>
+    </div>
+</div>
+
 <!-- Navigation Buttons -->
 <div class="columns">
     <div class="column">
