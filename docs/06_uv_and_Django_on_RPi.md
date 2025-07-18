@@ -97,3 +97,12 @@ $ uv add python-decouple
 - now we need to create `.env` file and store there vulnerable parameters and credentials,  
 - all information about using `python-decouple` is available in the aforementioned documentation!
 > Of course, we must add the `.env` to `.gitignore`!
+
+
+- to update `uv`:  
+```bash
+$ uv self update
+info: Checking for updates...
+success: Upgraded uv from v0.7.21 to v0.8.0! https://github.com/astral-sh/uv/releases/tag/0.8.0
+
+```

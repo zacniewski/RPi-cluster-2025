@@ -1,0 +1,16 @@
+[Unit]
+Description=Activate Cluster Virtual Environment
+After=network.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+User=artur
+# Create a symbolic link to the activate script for easier access
+ExecStart=/bin/bash -c 'mkdir -p /home/artur/.local/bin && ln -sf /home/artur/CLUSTER/.venv/bin/activate /home/artur/.local/bin/activate-cluster-venv'
+# Verify the virtual environment is accessible
+ExecStart=/home/artur/CLUSTER/.venv/bin/python -c "import sys; print(f'Virtual environment activated at {sys.executable}')"
+RemainAfterExit=yes
+
+[Install]
+WantedBy=multi-user.target

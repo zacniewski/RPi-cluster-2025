@@ -1,0 +1,99 @@
+{% extends 'monitoring/base.html' %}
+
+{% block title %}Remote Script Execution - RPi Cluster Monitoring{% endblock %}
+
+{% block content %}
+<h1 class="title has-text-centered">Remote Script Execution</h1>
+<h2 class="subtitle has-text-centered">SSH Connection and Script Results</h2>
+
+<!-- Connection Information Card -->
+<div class="columns is-multiline">
+    <div class="column is-full">
+        <div class="card">
+            <div class="card-content">
+                <div class="icon-container">
+                    <i class="fas fa-chess-bishop fa-5x" style="color: black;"></i>
+                </div>
+                <p class="title is-4">Connection Information</p>
+                <div class="content">
+                    <table class="table is-fullwidth">
+                        <tbody>
+                            <tr>
+                                <th>Host</th>
+                                <td>{{ ssh_host }}</td>
+                            </tr>
+                            <tr>
+                                <th>Username</th>
+                                <td>{{ ssh_username }}</td>
+                            </tr>
+                            <tr>
+                                <th>Script</th>
+                                <td>{{ remote_script }}</td>
+                            </tr>
+                            <tr>
+                                <th>Status</th>
+                                <td>
+                                    <span class="tag {% if connection_status == 'Connected' %}is-success{% elif connection_status == 'Disconnected' %}is-info{% else %}is-danger{% endif %}">
+                                        {{ connection_status }}
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Execution Time</th>
+                                <td>{{ execution_time }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Script Output -->
+<h1 class="title has-text-centered">Remote System Parameters</h1>
+<h2 class="subtitle has-text-centered">Data from remote server via SSH</h2>
+
+{% if error_message %}
+    <div class="notification is-danger">
+        <p><strong>Error:</strong></p>
+        <pre>{{ error_message }}</pre>
+    </div>
+{% endif %}
+
+{% if script_output %}
+    <!-- Display script output in a box similar to system_parameters.html -->
+    <div class="box">
+        <h3 class="title is-4">Remote System Information</h3>
+        <div class="content">
+            <pre>{{ script_output|linebreaksbr }}</pre>
+        </div>
+    </div>
+{% else %}
+    {% if not error_message %}
+        <div class="notification is-warning">
+            <p>No output received from a script.</p>
+        </div>
+    {% endif %}
+{% endif %}
+
+<!-- Navigation Buttons -->
+<div class="columns">
+    <div class="column">
+        <a href="{% url 'monitoring:dashboard' %}" class="button is-primary is-fullwidth">
+            <span class="icon">
+                <i class="fas fa-arrow-left"></i>
+            </span>
+            <span>Back to Dashboard</span>
+        </a>
+    </div>
+    <div class="column">
+        <a href="{% url 'monitoring:remote_script' %}" class="button is-info is-fullwidth">
+            <span class="icon">
+                <i class="fas fa-sync"></i>
+            </span>
+            <span>Run Again</span>
+        </a>
+    </div>
+</div>
+{% endblock %}
