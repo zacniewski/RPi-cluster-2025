@@ -66,25 +66,44 @@ def system_parameters(request):
         "load_avg": load_avg,
         "process_count": process_count,
     }
+    print(context)
 
     return render(request, 'monitoring/system_parameters.html', context)
 
-def remote_script_execution(request):
+def remote_script_execution(request, machine=None):
     """
     View a function that connects to a remote server via SSH,
     executes a Python script, and displays the results.
+    
+    Parameters:
+    - machine: The name of the machine to connect to (Queen, Rook, Knight, Pawn)
     """
+    # Machine to IP address mapping
+    machine_ips = {
+        'queen': '192.168.18.104',
+        'rook': '192.168.18.103',
+        'knight': '192.168.18.102',
+        'pawn': '192.168.18.101',
+    }
+    
+    # Default to Pawn if no machine is specified or if the machine is not in the mapping
+    machine_name = machine.lower() if machine and machine.lower() in machine_ips else 'pawn'
+    
     # SSH connection parameters
-    ssh_host = '192.168.18.101'
+    ssh_host = machine_ips[machine_name]
     ssh_port = 22
     ssh_username = 'artur'
     ssh_password = config('SSH_PASSWORD')  # In production, use environment variables or settings
     remote_script = 'CLUSTER/psutil_data.py'
     
+    # Set the machine name for display in the template
+    machine_display_name = machine_name.capitalize() if machine_name else 'Pawn'
+    
     script_output = ''
     error_message = ''
     connection_status = 'Not Connected'
-    
+    params = None
+
     try:
         if paramiko is None:
             error_message = "Paramiko module is not installed. Please install it with 'pip install paramiko'."
@@ -109,10 +128,10 @@ def remote_script_execution(request):
             # Get the output
             script_output = stdout.read().decode('utf-8')
             script_output = script_output.replace("'", '"')
-            print(len(script_output))
-            print(len(script_output.strip()))
-            print(script_output[355:])
-            y = json.loads(script_output)
+            print(script_output)
+            params = json.loads(script_output)
+            print(params)
+
             error_output = stderr.read().decode('utf-8')
             
             if error_output:
@@ -127,15 +146,16 @@ def remote_script_execution(request):
     
     # Prepare context for the template
     context = {
-        'page_title': 'Remote Script Execution',
+        'page_title': f'Remote Script Execution - {machine_display_name}',
         'connection_status': connection_status,
         'script_output': script_output,
-        'memory': y["memory"],
+        'params': params,
         'error_message': error_message,
         'ssh_host': ssh_host,
         'ssh_username': ssh_username,
         'remote_script': remote_script,
         'execution_time': datetime.now().strftime("%Y-%m-%d, %H:%M:%S"),
+        'machine_name': machine_display_name,
     }
     
     return render(request, 'monitoring/remote_script.html', context)

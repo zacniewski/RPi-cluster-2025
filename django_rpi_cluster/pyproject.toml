@@ -8,5 +8,7 @@ dependencies = [
     "django>=5.2.4",
     "paramiko>=3.5.1",
     "psutil>=7.0.0",
+    "pytest>=8.4.1",
+    "pytest-django>=4.8.0",
     "python-decouple>=3.8",
 ]

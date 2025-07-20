@@ -1,9 +1,9 @@
 {% extends 'monitoring/base.html' %}
 
-{% block title %}Remote Script Execution - RPi Cluster Monitoring{% endblock %}
+{% block title %}Remote Script Execution - {{ machine_name }} - RPi Cluster Monitoring{% endblock %}
 
 {% block content %}
-<h1 class="title has-text-centered">Remote Script Execution</h1>
+<h1 class="title has-text-centered">Remote Script Execution - {{ machine_name }}</h1>
 <h2 class="subtitle has-text-centered">SSH Connection and Script Results</h2>
 
 <!-- Connection Information Card -->
@@ -12,7 +12,7 @@
         <div class="card">
             <div class="card-content">
                 <div class="icon-container">
-                    <i class="fas fa-chess-bishop fa-5x" style="color: black;"></i>
+                    <i class="fas fa-circle-info fa-5x" style="color: black;"></i>
                 </div>
                 <p class="title is-4">Connection Information</p>
                 <div class="content">
@@ -61,10 +61,97 @@
     </div>
 {% endif %}
 
+{% if params %}
+    <div class="box">
+        <h3 class="title is-4">CPU Information</h3>
+        <div class="content">
+            <p><strong>CPU Count:</strong> {{ params.cpu_count }} logical cores</p>
+
+            {% if params.cpu_freq %}
+            <p><strong>CPU Frequency:</strong>
+                Current: {{ params.cpu_freq.0|floatformat:2 }} MHz
+                {% if params.cpu_freq.1 %} | Min: {{ params.cpu_freq.1|floatformat:2 }} MHz{% endif %}
+                {% if params.cpu_freq.2 %} | Max: {{ params.cpu_freq.2|floatformat:2 }} MHz{% endif %}
+            </p>
+            {% endif %}
+
+            <p><strong>CPU Usage per Core:</strong></p>
+            <div class="columns is-multiline">
+                {% for cpu in params.cpu_percent %}
+                <div class="column is-3">
+                    <div class="box has-text-centered">
+                        <p class="heading">Core {{ forloop.counter0 }}</p>
+                        <p class="title">{{ cpu|floatformat:1 }}%</p>
+                        <progress class="progress {% if cpu < 50 %}is-success{% elif cpu < 80 %}is-warning{% else %}is-danger{% endif %}"
+                                  value="{{ cpu }}" max="100">{{ cpu }}%</progress>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+
+            <p><strong>System Load Average:</strong> {{ params.load_avg.0|floatformat:2 }} (1 min), {{ params.load_avg.1|floatformat:2 }} (5 min), {{ params.load_avg.2|floatformat:2 }} (15 min)</p>
+        </div>
+    </div>
+
+    <div class="box">
+        <h3 class="title is-4">Memory Information</h3>
+        <div class="content">
+            <p><strong>Total Memory:</strong> {{ params.memory.0|filesizeformat }}</p>
+            <p><strong>Available Memory:</strong> {{ params.memory.1|filesizeformat }} ({{ params.memory.4|floatformat:1 }}% used)</p>
+            <p><strong>Used Memory:</strong> {{ params.memory.2|filesizeformat }}</p>
+            <p><strong>Free Memory:</strong> {{ params.memory.3|filesizeformat }}</p>
+
+            <progress class="progress {% if params.memory.4 < 50 %}is-success{% elif params.memory.4 < 80 %}is-warning{% else %}is-danger{% endif %}"
+                      value="{{ params.memory.4 }}" max="100">{{ params.memory.4 }}%</progress>
+        </div>
+    </div>
+
+    <div class="box">
+        <h3 class="title is-4">Disk Information</h3>
+        <div class="content">
+            <p><strong>Total Disk Space:</strong> {{ params.disk.0|filesizeformat }}</p>
+            <p><strong>Used Disk Space:</strong> {{ params.disk.1|filesizeformat }} ({{ params.disk.percent|floatformat:1 }}% used)</p>
+            <p><strong>Free Disk Space:</strong> {{ params.disk.2|filesizeformat }}</p>
+
+            <progress class="progress {% if params.disk.3 < 50 %}is-success{% elif params.disk.3 < 80 %}is-warning{% else %}is-danger{% endif %}"
+                      value="{{ params.disk.3 }}" max="100">{{ params.disk.3 }}%</progress>
+        </div>
+    </div>
+
+    <div class="box">
+        <h3 class="title is-4">Network Information</h3>
+        <div class="content">
+            <p><strong>Bytes Sent:</strong> {{ params.network.0|filesizeformat }}</p>
+            <p><strong>Bytes Received:</strong> {{ params.network.1|filesizeformat }}</p>
+            <p><strong>Packets Sent:</strong> {{ params.network.2 }}</p>
+            <p><strong>Packets Received:</strong> {{ params.3.packets_recv }}</p>
+            <p><strong>Error In:</strong> {{ params.network.4 }}</p>
+            <p><strong>Error Out:</strong> {{ params.network.5 }}</p>
+            <p><strong>Drop In:</strong> {{ params.network.6 }}</p>
+            <p><strong>Drop Out:</strong> {{ params.network.7 }}</p>
+        </div>
+    </div>
+
+    <div class="box">
+        <h3 class="title is-4">System Information</h3>
+        <div class="content">
+            <p><strong>Boot Time:</strong> {{ params.boot_time }}</p>
+            <p><strong>Running Processes:</strong> {{ params.process_count }}</p>
+        </div>
+    </div>
+
+{% else %}
+    {% if not params %}
+        <div class="notification is-warning">
+            <p>No output received from a script.</p>
+        </div>
+    {% endif %}
+{% endif %}
+
 {% if script_output %}
     <!-- Display script output in a box similar to system_parameters.html -->
     <div class="box">
-        <h3 class="title is-4">Remote System Information</h3>
+        <h3 class="title is-4">Remote System Information via SSH (raw)</h3>
         <div class="content">
             <pre>{{ script_output|linebreaksbr }}</pre>
         </div>
@@ -76,19 +163,6 @@
         </div>
     {% endif %}
 {% endif %}
-
-<div class="box">
-    <h3 class="title is-4">Memory Information</h3>
-    <div class="content">
-        <p><strong>Total Memory:</strong> {{ memory.0|filesizeformat }}</p>
-        <p><strong>Available Memory:</strong> {{ memory.1|filesizeformat }} ({{ memory.4|floatformat:1 }}% used)</p>
-        <p><strong>Used Memory:</strong> {{ memory.2|filesizeformat }}</p>
-        <p><strong>Free Memory:</strong> {{ memory.3|filesizeformat }}</p>
-
-        <progress class="progress {% if memory.4 < 50 %}is-success{% elif memory.4 < 80 %}is-warning{% else %}is-danger{% endif %}"
-                  value="{{ memory.4 }}" max="100">{{ memory.4 }}%</progress>
-    </div>
-</div>
 
 <!-- Navigation Buttons -->
 <div class="columns">
