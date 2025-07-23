@@ -1,8 +1,8 @@
 ## Git on the Raspberry Pis   
 
-#### 1. Setting user data for git
+#### 1. Setting user information in git configuration
 
-- on every machine we should set the proper data for version control system:  
+- on every machine we should set the proper information for version control system:  
 ```shell
 artur@queen-cluster:~ $ git config --list
 artur@queen-cluster:~ $ git config --global user.name "Artur Zacniewski"
