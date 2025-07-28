@@ -1,6 +1,6 @@
-## uv installation on RPi   and Django app to monitor system parameters
+## uv installation on RPi and Django app to monitor system parameters
 
-#### 1. Installation process
+#### 1. Installation process of 'uv'
 - for years `pip` + `venv` was my simple, but effective way to work with Python web applications (especially in Django),  
 - this time `uv` will be the main tool for Python ecosystem :snake:,  
 - I've used many tips from [Saas Pegasus](https://www.saaspegasus.com/guides/uv-deep-dive/) guide on `uv`, 
@@ -24,6 +24,7 @@ artur@pawn-cluster:~ $ uv --version
 uv 0.7.21
 ```
 
+- we should install `uv` on all remote machines (RPis),  
 - I've also installed `uv` on my PC, where I'll be developing the Django project,  
 - to get information about `uv` commands use:  
 ```bash 
@@ -36,20 +37,27 @@ $ uv self update
 info: Checking for updates...
 success: Upgraded uv from v0.7.21 to v0.8.0! https://github.com/astral-sh/uv/releases/tag/0.8.0
 ```
-
-- I'll start from the traditional version - with `SQLite` database and development server (it will be later modified and improved),   
+#### 2. Django project (created locally)
+- I'll start from the "traditional" version - with `SQLite` database and development server (it will be later modified and improved),   
+- preparing a directory for the new Django project with `uv`:  
 ```bash
 $ uv init django_rpi_cluster
 Initialized project `django-rpi-cluster` at `/home/artur/Desktop/PROJECTS/RPi-cluster-2025/django_rpi_cluster
- 
+```
+
+- creating a virtual environment with `uv`:  
+```sh
 $ cd django_rpi_cluster/
 $ uv sync
 
 Using CPython 3.12.3 interpreter at: /usr/bin/python3.12
-Creating virtual environment at: .venv
+Creating a virtual environment at: .venv
 Resolved 1 package in 2ms
 Audited in 0.00ms
+```
 
+- installing packages with `uv`:  
+```sh
 $ uv add django                                                                                                                                                                                       
 Resolved 5 packages in 563ms
 Prepared 3 packages in 1.36s
@@ -69,9 +77,13 @@ django-rpi-cluster v0.1.0
     └── sqlparse v0.5.3
 ```
 
-- starting a new Django project:  
+- starting a new Django project with `uv`:  
 ```bash
 $ uv run django-admin startproject core .
+```
+
+- checking if everything works:  
+```sh
 $ uv run manage.py runserver                                                                                                                                                                          
 
 Watching for file changes with StatReloader
@@ -87,6 +99,21 @@ Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
 
+#### 3. Environmental variables
+- now we need to create `.env` file and store there vulnerable parameters and credentials,  
+- this file will not be sent to the remote repository, so you need to create it on your machine,  
+- all information about using `python-decouple` is available in the aforementioned documentation!
+> Of course, we must add the `.env` to `.gitignore`!
+
+- the `.env` may look like this:  
+```bash
+SECRET_KEY=44543n54543u534568$(($**%*U*%*))u1g1
+SSH_PASSWORD=yoursecretpasswordisstoredhere12345
+```
+- the structure of the `.env` file is prepared for the `python-decouple` package (described few lined below),  
+
+#### 4. Django application 
+- you can find the whole code for a Django project in the `django_rpi_cluster` directory,  
 - let's add an application called `monitoring`:  
 ```bash
 $ uv run manage.py startapp monitoring
@@ -100,17 +127,6 @@ $ uv add psutil
 - let's add the [python-decouple](https://pypi.org/project/python-decouple/) package that helps you to organize your settings so that you can change parameters without having to redeploy your app:  
 ```bash
 $ uv add python-decouple
-```
-
-- now we need to create `.env` file and store there vulnerable parameters and credentials,  
-- this file will not be sent to the remote repository, so you need to create it on your machine,  
-- all information about using `python-decouple` is available in the aforementioned documentation!
-> Of course, we must add the `.env` to `.gitignore`!
-
-- the `.env` may look like this:  
-```bash
-SECRET_KEY=44543n54543u534568$(($**%*U*%*))u1g1
-SSH_PASSWORD=yoursecretpasswordisstoredhere12345
 ```
 
 - the `monitoring` app uses the `psutil` module to get information both from the local machine and from the remote (RPi) machines,  
@@ -127,7 +143,9 @@ SSH_PASSWORD=yoursecretpasswordisstoredhere12345
 - for example, the `cpu_freq` was returned in the `views.py` and the concrete values can be easily accessed in the Django template, e.g. `cpu_freq.min` gives information about the minimal CPU frequency of a given device,  
 - on the other hand, to get information about parameters from Raspberry Pi machines, we must connect to them via SSH and run a script on these machines and then get data back,  
 - we can use the [paramiko](https://docs.paramiko.org/en/stable/) package to achieve this task,  
-- the `remote_script_execution` view from `monitoring` app is responsible for that task,
+- the `remote_script_execution` view from `monitoring` app is responsible for that task,  
+
+#### 5. Scripts on remote machines
 - I've installed `uv` on every Raspberry Pi machine, and I've also created the `CLUSTER` project with `uv` in the home directory on every machine:  
 ```bash
 artur@knight-cluster:~ $ uv init CLUSTER
@@ -206,8 +224,17 @@ artur@pawn-cluster:~ $ scp CLUSTER/psutil_data.py 192.168.18.104:/home/artur/CLU
 "boot_time": "2025-07-20, 13:33:50", "load_avg": [0.04541015625, 0.02783203125, 0.00048828125], "process_count": 204}
 ```
 - there are no names like `svmem` or `sdiskusage` in the output result, but only pure JSON,  
-- the complete Django project is available in the `django_rpi_cluster` directory,  
 ![dashboard](../images/dashboard.png)  
-- you can run it locally and start the `System parameters` link,  
-- if you want to get information about parameters from network devices (RPi) you should configure them in the aforementioned way and change the IP values in the `monitoring/views.py` file:  
+- you can run it locally and start the `System parameters` link, it will show you the parameters of your machine,  
+- if you want to get information about parameters from network devices (RPis) you should configure them in the aforementioned way and change the IP values in the `monitoring/views.py` file:  
+```python
+ # Machine to IP address mapping
+    machine_ips = {
+        'queen': '192.168.18.104',
+        'rook': '192.168.18.103',
+        'knight': '192.168.18.102',
+        'pawn': '192.168.18.101',
+    }
+```
+- information about the one of the machines:  
 ![remote parameters](../images/remote_knight.png)
