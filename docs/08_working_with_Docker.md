@@ -5,8 +5,8 @@
 - useful guides:  
   - Docker for [Beginners](https://testdriven.io/blog/docker-for-beginners/),  
   - DevOps with [Docker](https://courses.mooc.fi/org/uh-cs/courses/devops-with-docker) from the University of Helsinki,  
-  - Docker [Compose](https://docs.docker.com/compose/gettingstarted/) Quickstart,  
-  - Docker [Compose](https://www.datacamp.com/tutorial/docker-compose-guide) Guide.  
+  - Docker [tutorials](https://www.datacamp.com/tutorial/category/docker) on DataCamp,    
+  - Docker [Compose](https://docs.docker.com/compose/gettingstarted/) Quickstart.  
 
 - optional:  
     - Docker [Best Practices](https://testdriven.io/blog/docker-best-practices/) for Python Developers,  
