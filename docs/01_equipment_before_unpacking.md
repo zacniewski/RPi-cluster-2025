@@ -1,5 +1,5 @@
-## What do I have?  
-This page contains information about the devices and cables used to build the RPi cluster.  
+## What do I have?
+This page contains information about the devices and cables used to build the RPi cluster.
 
 
 ### 1. Devices and cables
@@ -25,7 +25,7 @@ This page contains information about the devices and cables used to build the RP
 
 ### 3. Raspberry Pi 5
 - 4 x Raspberry Pi 5 with 8 GB
-![RPis](../images/RPis.jpg)  
+![RPis](../images/RPis.jpg)
 
 ### 4. Memory Cards
 - 3 x Goodram M1AA microSD 32GB 100MB/s UHS-I Class 10 with adapter
@@ -36,20 +36,19 @@ This page contains information about the devices and cables used to build the RP
 - 1 x Raspberry Pi SSD Kit 512 GB
 ![RPis](../images/256GB_kits.jpg)
 
-### 6. Switch 
+### 6. Switch
 - 1 x TP-Link TL-SG108E
-![RPis](../images/switch.jpg)  
+![RPis](../images/switch.jpg)
 
-### 7. Voomy Power Cube S5 
+### 7. Voomy Power Cube S5
 - 1 x Voomy Power Cube S5 - Power Strip 4 USB-A & 5 EU
 ![RPis](../images/voomy_s5.jpg)
 
-### 8. GeeekPi 4-layer acrylic housing 
+### 8. GeeekPi 4-layer acrylic housing
 - 1 x GeeekPi 4-layer acrylic housing with Armor Lite V5 Active Cooler radiator for Raspberry Pi 5 4GB / 8GB
 ![RPis](../images/geek_pi.jpg)
 
-### 9. Network Cables 
+### 9. Network Cables
 - 5 x Network Cable RJ45 - RJ45, Cat.6, 0.5m
 - 1 x Network Cable UTP Ethernet Cat.6 3m
 ![RPis](../images/cables.jpg)
-

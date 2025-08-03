@@ -1,29 +1,29 @@
-## Software installation for a single RPi (SD card)  
+## Software installation for a single RPi (SD card)
 
 #### 1. RPi Imager is recommended for installation OS on Raspberry Pi
-- link to [official page](https://www.raspberrypi.com/software/),  
-- link to [GitHub](https://github.com/raspberrypi/rpi-imager),  
-- choose a device, OS, and storage (SD card),  
+- link to [official page](https://www.raspberrypi.com/software/),
+- link to [GitHub](https://github.com/raspberrypi/rpi-imager),
+- choose a device, OS, and storage (SD card),
 
-![RPi Imager](../images/Rpi-imager.png)  
-- choose 'Edit settings',  
+![RPi Imager](../images/Rpi-imager.png)
+- choose 'Edit settings',
 
-![RPi Imager](../images/Rpi-imager-2.png)  
+![RPi Imager](../images/Rpi-imager-2.png)
 
 - set hostname, username, password, Wi-Fi (if available) and locale settings,
-![RPi Imager](../images/Rpi-Imager-3.png)  
+![RPi Imager](../images/Rpi-Imager-3.png)
 
-- enable SSH,  
-![RPi Imager](../images/RPi-Imager-4.png)  
-- click 'Yes' to apply settings,  
-![RPi Imager](../images/RPi-Imager-5.png)  
+- enable SSH,
+![RPi Imager](../images/RPi-Imager-4.png)
+- click 'Yes' to apply settings,
+![RPi Imager](../images/RPi-Imager-5.png)
 - writing OS to the SD card should start
 ![RPi Imager](../images/RPi-Imager-6.png)
 
 
 #### 2. Network interfaces
-- it's good to know the names of interfaces and the addresses of your machine(s) in the local network.  
-- my first machine (laptop + Wi-Fi):  
+- it's good to know the names of interfaces and the addresses of your machine(s) in the local network.
+- my first machine (laptop + Wi-Fi):
 ```bash
 $ ifconfig
 enp3s0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
@@ -82,7 +82,7 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
 ```
 
 - as you see the private addresses start with `192.168.18.XX` in my home network, yours could be different.
-- I set the `pawn.local` name to the hostname and I can ping the RPi, to be sure that it's in the local network:  
+- I set the `pawn.local` name to the hostname and I can ping the RPi, to be sure that it's in the local network:
 ```bash
 ping -c 5 pawn.local
 PING pawn.local (192.168.18.23) 56(84) bytes of data.
@@ -97,7 +97,7 @@ PING pawn.local (192.168.18.23) 56(84) bytes of data.
 rtt min/avg/max/mdev = 6.452/7.214/8.927/0.943 ms
 ```
 
-- now we can SSH to the RPi:  
+- now we can SSH to the RPi:
 ```bash
 $ ssh artur@pawn.local
 The authenticity of host 'pawn.local (192.168.18.24)' can't be established.
@@ -105,7 +105,7 @@ ED25519 key fingerprint is SHA256:ypSChuHB0IsqUYX46RrXNtdZr03Ng/a8Rz1khz8XHX4.
 This key is not known by any other names.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
 Warning: Permanently added 'pawn.local' (ED25519) to the list of known hosts.
-artur@pawn.local's password: 
+artur@pawn.local's password:
 Linux pawn 6.12.25+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.25-1+rpt1 (2025-04-30) aarch64
 
 The programs included with the Debian GNU/Linux system are free software;
@@ -128,7 +128,7 @@ tmpfs          tmpfs     806M  208K  805M   1% /run/user/1000
 ```
 
 - we can't see the NVMe disk at this time because it's not ready.
-To check that NVMe drive is connected correctly via M.2 HAT+, we can try:  
+To check that NVMe drive is connected correctly via M.2 HAT+, we can try:
 ```bash
 $ ls -l /dev/nvme*.
 crw------- 1 root root 245, 0 Jul  9 14:58 /dev/nvme0
@@ -137,7 +137,7 @@ brw-rw---- 1 root disk 259, 0 Jul  9 14:58 /dev/nvme0n1
 It's there :)
 
 #### 3. Updating and upgrading
-- good option is to run the following commands (or put them in `update_software.sh` script) and use it when needed:  
+- good option is to run the following commands (or put them in `update_software.sh` script) and use it when needed:
 ```bash
 echo "[1. Updating and upgrading (apt) ......]" &&
 sudo apt update &&
@@ -147,7 +147,7 @@ echo "" &&
 echo "[2. Cleaning Up ......]" &&
 sudo apt autoremove &&
 sudo apt autoclean &&
-sudo apt clean && 
+sudo apt clean &&
 sudo apt autopurge &&
 echo "" &&
 echo "[3. Done ......!!!!]" &&
@@ -156,7 +156,7 @@ echo ""
 - you can make the script executable by `chmod +x update_software.sh`
 
 - at the first running of the updating script on the freshly installed OS, it may take some time, but later it will not take too long.
-- it's almost sure that the system must be rebooted after a script finishes its job:  
+- it's almost sure that the system must be rebooted after a script finishes its job:
     ```bash
     $ sudo reboot
     ```
@@ -165,31 +165,31 @@ echo ""
 
 Important Considerations:
 
-    The hostname is used to identify your Raspberry Pi on the network. 
+    The hostname is used to identify your Raspberry Pi on the network.
 
-To set or change the network name (hostname) of your Raspberry Pi, you can use the raspi-config tool, hostnamectl, or by directly editing configuration files. The most straightforward method is using raspi-config. 
+To set or change the network name (hostname) of your Raspberry Pi, you can use the raspi-config tool, hostnamectl, or by directly editing configuration files. The most straightforward method is using raspi-config.
 Using raspi-config:
 
     Open `raspi-config` by running `sudo raspi-config` in the terminal.
     Navigate to "Network Options" and select "Hostname".
     Enter your desired hostname and confirm.
-    Reboot your Raspberry Pi for the changes to take effect. 
+    Reboot your Raspberry Pi for the changes to take effect.
 
 Using hostnamectl:
 
     Check the current hostname with hostnamectl or hostname.
     Change the hostname using sudo hostnamectl set-hostname your_new_hostname.
     Edit the `/etc/hosts` file to reflect the change, replacing the old hostname with the new one.
-    Reboot your Raspberry Pi. 
+    Reboot your Raspberry Pi.
 
 Directly Editing Files:
 
     Open the `/etc/hostname` file with a text editor (e.g., sudo nano /etc/hostname).
     Change the existing hostname to your desired name and save the file.
     Open the `/etc/hosts` file and change the hostname there as well.
-    Reboot your Raspberry Pi. 
+    Reboot your Raspberry Pi.
 
 
-Choose a descriptive and easy-to-remember hostname, especially if you have multiple Raspberry Pis. 
-Ensure the hostname adheres to the allowed character set (letters, numbers, and hyphens). 
-After changing the hostname, other devices on your network may need to be refreshed or rebooted to see the change.  
+Choose a descriptive and easy-to-remember hostname, especially if you have multiple Raspberry Pis.
+Ensure the hostname adheres to the allowed character set (letters, numbers, and hyphens).
+After changing the hostname, other devices on your network may need to be refreshed or rebooted to see the change.

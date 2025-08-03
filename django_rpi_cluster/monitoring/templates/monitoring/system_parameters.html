@@ -10,15 +10,15 @@
     <h3 class="title is-4">CPU Information</h3>
     <div class="content">
         <p><strong>CPU Count:</strong> {{ cpu_count }} logical cores</p>
-        
+
         {% if cpu_freq %}
-        <p><strong>CPU Frequency:</strong> 
+        <p><strong>CPU Frequency:</strong>
             Current: {{ cpu_freq.current|floatformat:2 }} MHz
             {% if cpu_freq.min %} | Min: {{ cpu_freq.min|floatformat:2 }} MHz{% endif %}
             {% if cpu_freq.max %} | Max: {{ cpu_freq.max|floatformat:2 }} MHz{% endif %}
         </p>
         {% endif %}
-        
+
         <p><strong>CPU Usage per Core:</strong></p>
         <div class="columns is-multiline">
             {% for cpu in cpu_percent %}
@@ -26,13 +26,13 @@
                 <div class="box has-text-centered">
                     <p class="heading">Core {{ forloop.counter0 }}</p>
                     <p class="title">{{ cpu|floatformat:1 }}%</p>
-                    <progress class="progress {% if cpu < 50 %}is-success{% elif cpu < 80 %}is-warning{% else %}is-danger{% endif %}" 
+                    <progress class="progress {% if cpu < 50 %}is-success{% elif cpu < 80 %}is-warning{% else %}is-danger{% endif %}"
                               value="{{ cpu }}" max="100">{{ cpu }}%</progress>
                 </div>
             </div>
             {% endfor %}
         </div>
-        
+
         <p><strong>System Load Average:</strong> {{ load_avg.0|floatformat:2 }} (1 min), {{ load_avg.1|floatformat:2 }} (5 min), {{ load_avg.2|floatformat:2 }} (15 min)</p>
     </div>
 </div>
@@ -44,8 +44,8 @@
         <p><strong>Available Memory:</strong> {{ memory.available|filesizeformat }} ({{ memory.percent|floatformat:1 }}% used)</p>
         <p><strong>Used Memory:</strong> {{ memory.used|filesizeformat }}</p>
         <p><strong>Free Memory:</strong> {{ memory.free|filesizeformat }}</p>
-        
-        <progress class="progress {% if memory.percent < 50 %}is-success{% elif memory.percent < 80 %}is-warning{% else %}is-danger{% endif %}" 
+
+        <progress class="progress {% if memory.percent < 50 %}is-success{% elif memory.percent < 80 %}is-warning{% else %}is-danger{% endif %}"
                   value="{{ memory.percent }}" max="100">{{ memory.percent }}%</progress>
     </div>
 </div>
@@ -56,8 +56,8 @@
         <p><strong>Total Disk Space:</strong> {{ disk.total|filesizeformat }}</p>
         <p><strong>Used Disk Space:</strong> {{ disk.used|filesizeformat }} ({{ disk.percent|floatformat:1 }}% used)</p>
         <p><strong>Free Disk Space:</strong> {{ disk.free|filesizeformat }}</p>
-        
-        <progress class="progress {% if disk.percent < 50 %}is-success{% elif disk.percent < 80 %}is-warning{% else %}is-danger{% endif %}" 
+
+        <progress class="progress {% if disk.percent < 50 %}is-success{% elif disk.percent < 80 %}is-warning{% else %}is-danger{% endif %}"
                   value="{{ disk.percent }}" max="100">{{ disk.percent }}%</progress>
     </div>
 </div>

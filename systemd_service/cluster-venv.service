@@ -1,3 +1,4 @@
+# Service used on the Raspberry Pi to activate virtual environment after machine boot
 [Unit]
 Description=Activate Cluster Virtual Environment
 After=network.target

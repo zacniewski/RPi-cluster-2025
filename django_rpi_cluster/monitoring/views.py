@@ -34,26 +34,26 @@ def system_parameters(request):
     cpu_percent = psutil.cpu_percent(interval=1, percpu=True)
     cpu_count = psutil.cpu_count(logical=True)
     cpu_freq = psutil.cpu_freq()
-    
+
     # Get memory information
     memory = psutil.virtual_memory()
-    
+
     # Get disk information
     disk = psutil.disk_usage('/')
-    
+
     # Get network information
     network = psutil.net_io_counters()
-    
+
     # Get boot time
     boot_time = psutil.boot_time()
     boot_time = datetime.fromtimestamp(boot_time).strftime("%Y-%m-%d, %H:%M:%S")
-    
+
     # Get a system load
     load_avg = psutil.getloadavg()
-    
+
     # Get process information
     process_count = len(psutil.pids())
-    
+
     context = {
         "page_title": "System Parameters",
         "cpu_percent": cpu_percent,
@@ -74,7 +74,7 @@ def remote_script_execution(request, machine=None):
     """
     View a function that connects to a remote server via SSH,
     executes a Python script, and displays the results.
-    
+
     Parameters:
     - machine: The name of the machine to connect to (Queen, Rook, Knight, Pawn)
     """
@@ -85,20 +85,20 @@ def remote_script_execution(request, machine=None):
         'knight': '192.168.18.102',
         'pawn': '192.168.18.101',
     }
-    
+
     # Default to Pawn if no machine is specified or if the machine is not in the mapping
     machine_name = machine.lower() if machine and machine.lower() in machine_ips else 'pawn'
-    
+
     # SSH connection parameters
     ssh_host = machine_ips[machine_name]
     ssh_port = 22
     ssh_username = 'artur'
     ssh_password = config('SSH_PASSWORD')  # In production, use environment variables or settings
     remote_script = 'CLUSTER/psutil_data.py'
-    
+
     # Set the machine name for display in the template
     machine_display_name = machine_name.capitalize() if machine_name else 'Pawn'
-    
+
     script_output = ''
     error_message = ''
     connection_status = 'Not Connected'
@@ -112,7 +112,7 @@ def remote_script_execution(request, machine=None):
             ssh_client = paramiko.SSHClient()
             # Automatically add the server's host key (this is insecure for production)
             ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-            
+
             # Connect to the remote server
             ssh_client.connect(
                 hostname=ssh_host,
@@ -122,7 +122,7 @@ def remote_script_execution(request, machine=None):
                 timeout=10
             )
             connection_status = 'Connected'
-            
+
             # Execute the Python script
             stdin, stdout, stderr = ssh_client.exec_command(f'python {remote_script}')
             # Get the output
@@ -133,17 +133,17 @@ def remote_script_execution(request, machine=None):
             print(params)
 
             error_output = stderr.read().decode('utf-8')
-            
+
             if error_output:
                 error_message = f"Script execution error: {error_output}"
-            
+
             # Close the connection
             ssh_client.close()
             connection_status = 'Disconnected'
-            
+
     except Exception as e:
         error_message = f"Error: {str(e)}"
-    
+
     # Prepare context for the template
     context = {
         'page_title': f'Remote Script Execution - {machine_display_name}',
@@ -157,5 +157,5 @@ def remote_script_execution(request, machine=None):
         'execution_time': datetime.now().strftime("%Y-%m-%d, %H:%M:%S"),
         'machine_name': machine_display_name,
     }
-    
+
     return render(request, 'monitoring/remote_script.html', context)
