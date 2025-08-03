@@ -70,3 +70,13 @@ Fixing docs/01_equipment_before_unpacking.md
 Fixing django_rpi_cluster/monitoring/templates/monitoring/system_parameters.html
 Fixing .gitignore
 ```
+
+- after fixing the issues in the code by `pre-commit`, we can check files again:
+```shell
+$ pre-commit run --all-files
+check yaml...............................................................Passed
+fix end of files.........................................................Passed
+trim trailing whitespace.................................................Passed
+```
+- you can add the hooks you need,
+- before every commit your files will be checked with installed hooks.
