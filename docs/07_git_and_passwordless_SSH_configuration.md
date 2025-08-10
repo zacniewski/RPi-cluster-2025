@@ -115,3 +115,43 @@ Linux queen-cluster 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~
 ...
 artur@queen-cluster:~ $
 ```
+
+- to simplify more, we can use SSH aliases,
+- on every machine we should add the following lines to the `~/.ssh/config` file (create this file if it doesn't exist):
+```shell
+Host pawn-cluster
+User artur
+Hostname 192.168.18.101
+
+Host knight-cluster
+User artur
+Hostname 192.168.18.102
+
+Host rook-cluster
+User artur
+Hostname 192.168.18.103
+
+Host queen-cluster
+User artur
+Hostname 192.168.18.104
+```
+
+- also on every machine append the following lines to the `/etc/hosts` file (with `sudo` privileges):
+
+```shell
+192.168.18.101  pawn-cluster
+192.168.18.102  knight-cluster
+192.168.18.103  rook-cluster
+192.168.18.104  queen-cluster
+```
+- finally, restart the SSH service:
+```shell
+artur@pawn-cluster:~ $ sudo systemctl restart ssh
+```
+- and now we can SSH to any of the machines without being prompted for a password with shorter names:
+```shell
+artur@pawn-cluster:~ $ ssh knight-cluster
+Linux knight-cluster 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~bookworm (2025-06-26) aarch64
+...
+artur@knight-cluster:~ $
+```
