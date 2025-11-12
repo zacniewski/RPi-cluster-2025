@@ -30,10 +30,10 @@
 ----------------------------------------------
 Hostname                IP Address
 ----------------------------------------------
-pawn-cluster.local      192.168.18.19
-knight-cluster.local    192.168.18.25
-rook-cluster.local      192.168.18.26
-queen-cluster.local     192.168.18.27
+pawn-cluster.local      192.168.1.19
+knight-cluster.local    192.168.1.25
+rook-cluster.local      192.168.1.26
+queen-cluster.local     192.168.1.27
 ----------------------------------------------
 
 #### 2. Locale
@@ -75,15 +75,15 @@ $ sudo apt install arp-scan
 - check the interface name and local IP address with `ifconfig` and use it with the name of proper interface:
 
 ```bash
-$ sudo arp-scan --interface=enp34s0 192.168.18.0/24
+$ sudo arp-scan --interface=enp34s0 192.168.1.0/24
 
-Interface: enp34s0, type: EN10MB, MAC: 00:d8:61:54:64:82, IPv4: 192.168.18.17
+Interface: enp34s0, type: EN10MB, MAC: 00:d8:61:54:64:82, IPv4: 192.168.1.17
 Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
-192.168.18.1    f8:9b:6e:a0:3f:c0       Nokia Solutions and Networks GmbH & Co. KG
-192.168.18.19   2c:cf:67:bf:e2:eb       (Unknown)
-192.168.18.25   2c:cf:67:bf:e1:9a       (Unknown)
-192.168.18.26   2c:cf:67:bf:e9:84       (Unknown)
-192.168.18.27   2c:cf:67:bf:d3:bb       (Unknown)
+192.168.1.1    f8:9b:6e:a0:3f:c0       Nokia Solutions and Networks GmbH & Co. KG
+192.168.1.19   2c:cf:67:bf:e2:eb       (Unknown)
+192.168.1.25   2c:cf:67:bf:e1:9a       (Unknown)
+192.168.1.26   2c:cf:67:bf:e9:84       (Unknown)
+192.168.1.27   2c:cf:67:bf:d3:bb       (Unknown)
 ```
 > I've just left only the information about the router and our four RPis.
 > In my network I can't see the vendor name next to the RPis, only 'Unknown' information, but maybe you'll see it.
@@ -100,7 +100,7 @@ $ sudo arp-scan --interface=enp34s0 --localnet
 - when you check `ifconfig` for your Raspberry Pi, you can see the following interfaces with different IP addresses:
 ```bash
 eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet 192.168.18.27  netmask 255.255.255.0  broadcast 192.168.18.255
+        inet 192.168.1.27  netmask 255.255.255.0  broadcast 192.168.1.255
         inet6 fe80::d86f:6203:8c27:cf8e  prefixlen 64  scopeid 0x20<link>
         ether 2c:cf:67:bf:d3:bb  txqueuelen 1000  (Ethernet)
         RX packets 13748  bytes 2651177 (2.5 MiB)
@@ -119,7 +119,7 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
 wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet 192.168.18.22  netmask 255.255.255.0  broadcast 192.168.18.255
+        inet 192.168.1.22  netmask 255.255.255.0  broadcast 192.168.1.255
         inet6 fe80::6695:2928:d9c4:c8b  prefixlen 64  scopeid 0x20<link>
         ether 2c:cf:67:bf:d3:bc  txqueuelen 1000  (Ethernet)
         RX packets 8297  bytes 1250359 (1.1 MiB)
@@ -135,14 +135,14 @@ wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
   - `sudo nano /etc/dhcpcd.conf` and we had to paste the following content to this file:
     ```bash
         interface eth0
-        static ip_address=192.168.18.101/24
-        static routers=192.168.18.1
-        static domain_name_servers=192.168.18.1
+        static ip_address=192.168.1.101/24
+        static routers=192.168.1.1
+        static domain_name_servers=192.168.1.1
 
         interface wlan0
-        static ip_address=192.168.18.201/24
-        static routers=192.168.18.1
-        static domain_name_servers=192.168.18.1
+        static ip_address=192.168.1.201/24
+        static routers=192.168.1.1
+        static domain_name_servers=192.168.1.1
     ```
 - the above method doesn't work with the newest RPi OS!
 
@@ -161,16 +161,16 @@ Wired connection 1  cdfa84e0-1cc9-3966-ab9e-9c097f037cfe  ethernet  eth0
 lo                  33b70138-a642-4c5a-9c48-c719cec5035e  loopback  lo
 preconfigured       c7923d29-7801-4eb5-9e3a-bacd14f4cb1b  wifi      wlan0
 
-artur@queen-cluster:~ $ sudo nmcli c mod "Wired connection 1" ipv4.addresses 192.168.18.104/24 ipv4.method manual
-artur@queen-cluster:~ $ sudo nmcli con mod "Wired connection 1" ipv4.gateway 192.168.18.1
-artur@queen-cluster:~ $ sudo nmcli con mod "Wired connection 1" ipv4.dns 192.168.18.1
+artur@queen-cluster:~ $ sudo nmcli c mod "Wired connection 1" ipv4.addresses 192.168.1.104/24 ipv4.method manual
+artur@queen-cluster:~ $ sudo nmcli con mod "Wired connection 1" ipv4.gateway 192.168.1.1
+artur@queen-cluster:~ $ sudo nmcli con mod "Wired connection 1" ipv4.dns 192.168.1.1
 artur@queen-cluster:~ $ sudo nmcli c down "Wired connection 1" && sudo nmcli c up "Wired connection 1"
 Connection 'Wired connection 1' successfully deactivated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/3)
 Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/5)
 
-artur@queen-cluster:~ $ sudo nmcli c mod "preconfigured" ipv4.addresses 192.168.18.204/24 ipv4.method manual
-artur@queen-cluster:~ $ sudo nmcli con mod "preconfigured" ipv4.gateway 192.168.18.1
-artur@queen-cluster:~ $ sudo nmcli con mod "preconfigured" ipv4.dns 192.168.18.1
+artur@queen-cluster:~ $ sudo nmcli c mod "preconfigured" ipv4.addresses 192.168.1.204/24 ipv4.method manual
+artur@queen-cluster:~ $ sudo nmcli con mod "preconfigured" ipv4.gateway 192.168.1.1
+artur@queen-cluster:~ $ sudo nmcli con mod "preconfigured" ipv4.dns 192.168.1.1
 artur@queen-cluster:~ $ sudo nmcli c down "preconfigured" && sudo nmcli c up "preconfigured"
 Connection 'preconfigured' successfully deactivated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/2)
 Connection successfully activated (D-Bus active path: /org/freedesktop/NetworkManager/ActiveConnection/4)
@@ -183,37 +183,37 @@ artur@queen-cluster:~ $ nmcli -p connection show "Wired connection 1"
                 Connection profile details (Wired connection 1)
 ===============================================================================
 connection.id:                          Wired connection 1
-ipv4.addresses:                         192.168.18.104/24
+ipv4.addresses:                         192.168.1.104/24
 
 artur@queen-cluster:~ $ nmcli -p connection show "preconfigured"
 ===============================================================================
                   Connection profile details (preconfigured)
 ===============================================================================
 connection.id:                          preconfigured
-ipv4.addresses:                         192.168.18.204/24
+ipv4.addresses:                         192.168.1.204/24
 ```
 
 - checking `ping`
 ```
 $ ping -c 5 queen-cluster.local
-PING queen-cluster.local (192.168.18.104) 56(84) bytes of data.
-64 bytes from 192.168.18.104: icmp_seq=1 ttl=64 time=0.143 ms
+PING queen-cluster.local (192.168.1.104) 56(84) bytes of data.
+64 bytes from 192.168.1.104: icmp_seq=1 ttl=64 time=0.143 ms
 ```
 
 - scanning network again with `arp-scan`
 
 ```bash
-$ sudo arp-scan --interface=enp34s0 192.168.18.0/24
+$ sudo arp-scan --interface=enp34s0 192.168.1.0/24
 ```
 
 #### Summary of IP changes
 
 | Hostname                   | IP Address (eth0) | IP Address (wlan0) |
 |----------------------------|-------------------|--------------------|
-| pawn-cluster.local         | 192.168.18.101    | 192.168.18.201     |
-| knight-cluster.local       | 192.168.18.102    | 192.168.18.202     |
-| rook-cluster.local         | 192.168.18.103    | 192.168.18.203     |
-| queen-cluster.local        | 192.168.18.104    | 192.168.18.204     |
+| pawn-cluster.local         | 192.168.1.101    | 192.168.1.201     |
+| knight-cluster.local       | 192.168.1.102    | 192.168.1.202     |
+| rook-cluster.local         | 192.168.1.103    | 192.168.1.203     |
+| queen-cluster.local        | 192.168.1.104    | 192.168.1.204     |
 
 
 #### Closing the OS with terminal
