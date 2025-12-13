@@ -98,6 +98,10 @@ Django version 5.2.4, using settings 'core.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
+- we can run the following command to get rid information about migration:
+``sh
+ uv run manage.py migrate
+```
 
 #### 3. Environmental variables
 - now we need to create `.env` file and store there vulnerable parameters and credentials,
@@ -208,9 +212,9 @@ print(system_parameters())
 
 - we can copy the `psutil_data.py` file from the first RPi to other machines:
 ```bash
-artur@pawn-cluster:~ $ scp CLUSTER/psutil_data.py 192.168.18.102:/home/artur/CLUSTER/
-artur@pawn-cluster:~ $ scp CLUSTER/psutil_data.py 192.168.18.103:/home/artur/CLUSTER/
-artur@pawn-cluster:~ $ scp CLUSTER/psutil_data.py 192.168.18.104:/home/artur/CLUSTER/
+artur@pawn-cluster:~ $ scp CLUSTER/psutil_data.py 192.168.1.102:/home/artur/CLUSTER/
+artur@pawn-cluster:~ $ scp CLUSTER/psutil_data.py 192.168.1.103:/home/artur/CLUSTER/
+artur@pawn-cluster:~ $ scp CLUSTER/psutil_data.py 192.168.1.104:/home/artur/CLUSTER/
 ```
 
 - after running the `remote_script_execution` view the `psutil_data.py` script will be executed on the given Raspberry Pi machine and the result will be sent back as a string,
@@ -230,10 +234,10 @@ artur@pawn-cluster:~ $ scp CLUSTER/psutil_data.py 192.168.18.104:/home/artur/CLU
 ```python
  # Machine to IP address mapping
     machine_ips = {
-        'queen': '192.168.18.104',
-        'rook': '192.168.18.103',
-        'knight': '192.168.18.102',
-        'pawn': '192.168.18.101',
+        'queen': '192.168.1.104',
+        'rook': '192.168.1.103',
+        'knight': '192.168.1.102',
+        'pawn': '192.168.1.101',
     }
 ```
 - information about the one of the machines:
