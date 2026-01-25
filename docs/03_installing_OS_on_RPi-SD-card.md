@@ -43,7 +43,7 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
 wlp0s20f3: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet 192.168.18.13  netmask 255.255.255.0  broadcast 192.168.18.255
+        inet 192.168.1.13  netmask 255.255.255.0  broadcast 192.168.1.255
         inet6 fe80::ba1c:c7e2:3761:bbeb  prefixlen 64  scopeid 0x20<link>
         ether dc:46:28:8b:14:c9  txqueuelen 1000  (Ethernet)
         RX packets 1171156  bytes 1637420945 (1.6 GB)
@@ -63,7 +63,7 @@ docker0: flags=4099<UP,BROADCAST,MULTICAST>  mtu 1500
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 
 enp34s0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
-        inet 192.168.18.17  netmask 255.255.255.0  broadcast 192.168.18.255
+        inet 192.168.1.17  netmask 255.255.255.0  broadcast 192.168.1.255
         inet6 fe80::914a:7757:29e5:997  prefixlen 64  scopeid 0x20<link>
         ether 00:d8:61:54:64:82  txqueuelen 1000  (Ethernet)
         RX packets 173771  bytes 199545810 (199.5 MB)
@@ -81,16 +81,16 @@ lo: flags=73<UP,LOOPBACK,RUNNING>  mtu 65536
         TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0
 ```
 
-- as you see the private addresses start with `192.168.18.XX` in my home network, yours could be different.
+- as you see the private addresses start with `192.168.1.XX` in my home network, yours could be different.
 - I set the `pawn.local` name to the hostname and I can ping the RPi, to be sure that it's in the local network:
 ```bash
 ping -c 5 pawn.local
-PING pawn.local (192.168.18.23) 56(84) bytes of data.
-64 bytes from 192.168.18.23: icmp_seq=1 ttl=64 time=7.55 ms
-64 bytes from 192.168.18.23: icmp_seq=2 ttl=64 time=8.93 ms
-64 bytes from 192.168.18.23: icmp_seq=3 ttl=64 time=6.45 ms
-64 bytes from 192.168.18.23: icmp_seq=4 ttl=64 time=6.60 ms
-64 bytes from 192.168.18.23: icmp_seq=5 ttl=64 time=6.55 ms
+PING pawn.local (192.168.1.23) 56(84) bytes of data.
+64 bytes from 192.168.1.23: icmp_seq=1 ttl=64 time=7.55 ms
+64 bytes from 192.168.1.23: icmp_seq=2 ttl=64 time=8.93 ms
+64 bytes from 192.168.1.23: icmp_seq=3 ttl=64 time=6.45 ms
+64 bytes from 192.168.1.23: icmp_seq=4 ttl=64 time=6.60 ms
+64 bytes from 192.168.1.23: icmp_seq=5 ttl=64 time=6.55 ms
 
 --- pawn.local ping statistics ---
 5 packets transmitted, 5 received, 0% packet loss, time 4005ms
@@ -100,7 +100,7 @@ rtt min/avg/max/mdev = 6.452/7.214/8.927/0.943 ms
 - now we can SSH to the RPi:
 ```bash
 $ ssh artur@pawn.local
-The authenticity of host 'pawn.local (192.168.18.24)' can't be established.
+The authenticity of host 'pawn.local (192.168.1.24)' can't be established.
 ED25519 key fingerprint is SHA256:ypSChuHB0IsqUYX46RrXNtdZr03Ng/a8Rz1khz8XHX4.
 This key is not known by any other names.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes

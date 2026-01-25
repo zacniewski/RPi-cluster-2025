@@ -59,7 +59,7 @@ Identity added: /home/artur/.ssh/id_ed25519 (a.zacniewski@gmail.com)
 - a useful guide was found [here](https://www.luisllamas.es/en/how-to-connect-ssh-without-password-by-generating-an-ssh-key-on-raspberry-pi/).
 ```shell
 artur@pawn-cluster:~ $ ssh-copy-id artur@knight-cluster.local
-The authenticity of host 'knight-cluster.local (192.168.18.102)' can't be established.
+The authenticity of host 'knight-cluster.local (192.168.1.102)' can't be established.
 ED25519 key fingerprint is SHA256:/xX1rgRO/xkFJzgc9DvTQkfRFI5x6KBCJBXd5VEo2hk.
 This host key is known by the following other names/addresses:
     ~/.ssh/known_hosts:1: [hashed name]
@@ -121,28 +121,28 @@ artur@queen-cluster:~ $
 ```shell
 Host pawn-cluster
 User artur
-Hostname 192.168.18.101
+Hostname 192.168.1.101
 
 Host knight-cluster
 User artur
-Hostname 192.168.18.102
+Hostname 192.168.1.102
 
 Host rook-cluster
 User artur
-Hostname 192.168.18.103
+Hostname 192.168.1.103
 
 Host queen-cluster
 User artur
-Hostname 192.168.18.104
+Hostname 192.168.1.104
 ```
 
 - also on every machine append the following lines to the `/etc/hosts` file (with `sudo` privileges):
 
 ```shell
-192.168.18.101  pawn-cluster
-192.168.18.102  knight-cluster
-192.168.18.103  rook-cluster
-192.168.18.104  queen-cluster
+192.168.1.101  pawn-cluster
+192.168.1.102  knight-cluster
+192.168.1.103  rook-cluster
+192.168.1.104  queen-cluster
 ```
 - finally, restart the SSH service:
 ```shell
