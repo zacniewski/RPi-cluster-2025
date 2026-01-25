@@ -153,8 +153,8 @@ Description of the process of building Raspberry Pi cluster
 - [x] Installing the operating system on NVMe drives
     - [x] Configuring IP addresses in the local network
 - [x] Installing Docker on Raspberry Pi
-- [ ] Django web application for cluster monitoring
-    - [ ] Using uv for managing packages
+- [x] Django web application for cluster monitoring
+    - [x] Using uv for managing packages
 - [ ] Installation of distributed computing software
     - [ ] .........
 - [ ] Connecting cameras and external sensors
