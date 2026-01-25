@@ -212,9 +212,9 @@ print(system_parameters())
 
 - we can copy the `psutil_data.py` file from the first RPi to other machines:
 ```bash
-artur@pawn-cluster:~ $ scp CLUSTER/psutil_data.py 192.168.1.102:/home/artur/CLUSTER/
-artur@pawn-cluster:~ $ scp CLUSTER/psutil_data.py 192.168.1.103:/home/artur/CLUSTER/
-artur@pawn-cluster:~ $ scp CLUSTER/psutil_data.py 192.168.1.104:/home/artur/CLUSTER/
+artur@pawn-cluster:~ $ scp CLUSTER/psutil_data.py 192.168.18.102:/home/artur/CLUSTER/
+artur@pawn-cluster:~ $ scp CLUSTER/psutil_data.py 192.168.18.103:/home/artur/CLUSTER/
+artur@pawn-cluster:~ $ scp CLUSTER/psutil_data.py 192.168.18.104:/home/artur/CLUSTER/
 ```
 
 - after running the `remote_script_execution` view the `psutil_data.py` script will be executed on the given Raspberry Pi machine and the result will be sent back as a string,
@@ -232,12 +232,12 @@ artur@pawn-cluster:~ $ scp CLUSTER/psutil_data.py 192.168.1.104:/home/artur/CLUS
 - you can run it locally and start the `System parameters` link, it will show you the parameters of your machine,
 - if you want to get information about parameters from network devices (RPis) you should configure them in the aforementioned way and change the IP values in the `monitoring/views.py` file:
 ```python
- # Machine to IP address mapping
+    # Machine to IP address mapping
     machine_ips = {
-        'queen': '192.168.1.104',
-        'rook': '192.168.1.103',
-        'knight': '192.168.1.102',
-        'pawn': '192.168.1.101',
+        'queen': '192.168.18.104',
+        'rook': '192.168.18.103',
+        'knight': '192.168.18.102',
+        'pawn': '192.168.18.101',
     }
 ```
 - information about the one of the machines:

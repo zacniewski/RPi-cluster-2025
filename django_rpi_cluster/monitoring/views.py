@@ -80,10 +80,10 @@ def remote_script_execution(request, machine=None):
     """
     # Machine to IP address mapping
     machine_ips = {
-        'queen': '192.168.1.104',
-        'rook': '192.168.1.103',
-        'knight': '192.168.1.102',
-        'pawn': '192.168.1.101',
+        'queen': '192.168.18.104',
+        'rook': '192.168.18.103',
+        'knight': '192.168.18.102',
+        'pawn': '192.168.18.101',
     }
 
     # Default to Pawn if no machine is specified or if the machine is not in the mapping
