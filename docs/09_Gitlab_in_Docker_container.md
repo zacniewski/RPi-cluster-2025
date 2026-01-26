@@ -1,5 +1,6 @@
 ## Installing GitLab in a Docker container
-> I'll be using the `queen` machine for Gitlab installation.
+> I'm not going to touch on this topic for now, because I will most likely develop it further in another project!!!
+
 
 ### 1. Links
 
@@ -7,6 +8,8 @@
   - [official](https://hub.docker.com/r/gitlab/gitlab-ce/) Docker image from GitLab,
 
 ### 2. Create a directory for the volumes
+> I'll be using the `queen` machine for Gitlab installation.
+
   - Create the directory:
 ```shell
 $ sudo mkdir -p /srv/gitlab

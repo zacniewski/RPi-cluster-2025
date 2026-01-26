@@ -10,7 +10,7 @@
     - How to Dockerize a [Django App](https://www.docker.com/blog/how-to-dockerize-django-app/),
 
 ### uv
-    - Migrating [Django projects to uv](https://www.caktusgroup.com/blog/2025/06/11/migrating-python-django-projects-uv/) by Caktus Group,
+- Migrating [Django projects to uv](https://www.caktusgroup.com/blog/2025/06/11/migrating-python-django-projects-uv/) by Caktus Group,
 
 ### Cameras
   - Deploy OAK-D Lite with [RPi](https://docs.luxonis.com/hardware/platform/deploy/to-rpi/),
