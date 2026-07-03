@@ -28,8 +28,8 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
 ```
 
-- if everything goes fine with installation, we could try to run standard `hello-world` image,
-- we could also chech the Docker's version:
+- if everything goes fine with installation, we can try to run the standard `hello-world` image,
+- we can also check Docker's version:
 
 ```bash
 artur@pawn-cluster:~ $ docker --version

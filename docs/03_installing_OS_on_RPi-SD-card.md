@@ -1,4 +1,4 @@
-## Software installation for a single RPi (SD card)
+## Raspberry Pi OS installation for a single RPi (SD card)
 
 #### 1. RPi Imager is recommended for installation OS on Raspberry Pi
 - link to [official page](https://www.raspberrypi.com/software/),

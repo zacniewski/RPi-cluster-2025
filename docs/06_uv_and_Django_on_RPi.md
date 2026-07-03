@@ -3,7 +3,7 @@
 #### 1. Installation process of 'uv'
 - for years `pip` + `venv` was my simple, but effective way to work with Python web applications (especially in Django),
 - this time `uv` will be the main tool for Python ecosystem :snake:,
-- I've used many tips from [Saas Pegasus](https://www.saaspegasus.com/guides/uv-deep-dive/) guide on `uv`,
+- I used many tips from the [SaaS Pegasus](https://www.saaspegasus.com/guides/uv-deep-dive/) guide on `uv`,
 - first, the `uv` must be installed:
 
 ```bash
@@ -98,15 +98,15 @@ Django version 5.2.4, using settings 'core.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
-- we can run the following command to get rid information about migration:
+- we can run the following command to get rid of the migration warning:
 ``sh
  uv run manage.py migrate
 ```
 
-#### 3. Environmental variables
-- now we need to create `.env` file and store there vulnerable parameters and credentials,
+#### 3. Environment variables
+- now we need to create a `.env` file and store sensitive parameters and credentials there,
 - this file will not be sent to the remote repository, so you need to create it on your machine,
-- all information about using `python-decouple` is available in the aforementioned documentation!
+- all information about using `python-decouple` is available in the documentation mentioned above.
 > Of course, we must add the `.env` to `.gitignore`!
 
 - the `.env` may look like this:
@@ -114,7 +114,7 @@ Quit the server with CONTROL-C.
 SECRET_KEY=44543n54543u534568$(($**%*U*%*))u1g1
 SSH_PASSWORD=yoursecretpasswordisstoredhere12345
 ```
-- the structure of the `.env` file is prepared for the `python-decouple` package (described few lined below),
+- the structure of the `.env` file is prepared for the `python-decouple` package (described a few lines below),
 
 #### 4. Django application
 - you can find the whole code for a Django project in the `django_rpi_cluster` directory,

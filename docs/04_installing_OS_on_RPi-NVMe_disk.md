@@ -1,4 +1,4 @@
-## Software installation for a cluster of RPis (NVMe disks)
+## Raspberry Pi OS installation for a cluster of RPis (NVMe disks)
 
 #### 1. M.2 HAT+ and NVMe disk
 - since we're using SSD Kit (NVMe disk on the top of M.2 HAT+) it's recommended to read the [official documentation](https://www.raspberrypi.com/documentation/accessories/m2-hat-plus.html),
@@ -18,7 +18,7 @@
 
     5. Reboot your Raspberry Pi with `sudo reboot`.
 
-- I've just used the single SD card on every NVMMe disk and changed the hostnames according to the list above,
+- I've just used a single SD card on every NVMe disk and changed the hostnames according to the list above,
 
 - I decided to have the following names of my RPis:
     - pawn-cluster.local
@@ -93,9 +93,9 @@ Starting arp-scan 1.10.0 with 256 hosts (https://github.com/royhills/arp-scan)
 $ sudo arp-scan --interface=enp34s0 --localnet
 ```
 
-#### 4. Setting static IP inRaspberry Pi
+#### 4. Setting static IP in Raspberry Pi
 - the problem: every time you reboot your Pi, the IP address can change, based on what the router decides to assign at the moment,
-- fortunately, there's a simple way to make sure that your Raspberry Pi always gets the same IP address on your local network or, at least, always tries to get the same address on your local network,
+- fortunately, there is a simple way to make sure that your Raspberry Pi always gets the same IP address on your local network or, at least, always tries to get the same address on your local network,
 - some solutions were found [here](https://botland.store/content/71-How-to-set-a-static-IP-in-Raspberry-Pi) and [here](https://www.tomshardware.com/how-to/static-ip-raspberry-pi), but with newer version of
 - when you check `ifconfig` for your Raspberry Pi, you can see the following interfaces with different IP addresses:
 ```bash

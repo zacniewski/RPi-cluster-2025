@@ -1,4 +1,12 @@
-## Git on the Raspberry Pis
+# Git and passwordless SSH configuration
+
+## Table of Contents
+- [Installing Git](#1-installing-git)
+- [Git user information](#2-setting-user-information-in-git-configuration)
+- [Generating SSH keys](#3-generating-ssh-keys)
+- [SSH aliases](#4-ssh-aliases)
+- [Hostname resolution](#5-hostname-resolution)
+- [Verification](#6-verification)
 
 #### 1. Installing git
 
@@ -116,6 +124,7 @@ Linux queen-cluster 6.12.34+rpt-rpi-2712 #1 SMP PREEMPT Debian 1:6.12.34-1+rpt1~
 artur@queen-cluster:~ $
 ```
 
+#### 4. SSH aliases
 - to simplify more, we can use SSH aliases,
 - on every machine we should add the following lines to the `~/.ssh/config` file (create this file if it doesn't exist):
 ```shell
@@ -136,6 +145,7 @@ User artur
 Hostname 192.168.1.104
 ```
 
+#### 5. Hostname resolution
 - also on every machine append the following lines to the `/etc/hosts` file (with `sudo` privileges):
 
 ```shell
@@ -144,6 +154,7 @@ Hostname 192.168.1.104
 192.168.1.103  rook-cluster
 192.168.1.104  queen-cluster
 ```
+#### 6. Verification
 - finally, restart the SSH service:
 ```shell
 artur@pawn-cluster:~ $ sudo systemctl restart ssh

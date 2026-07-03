@@ -22,7 +22,7 @@ Installed 9 packages in 13ms
 $ touch .pre-commit-config.yaml
 ```
 
-- based on the documentation of `pre-install` starting file could look like this:
+- based on the `pre-commit` documentation, the starting file could look like this:
 ```yaml
 repos:
 -   repo: https://github.com/pre-commit/pre-commit-hooks
