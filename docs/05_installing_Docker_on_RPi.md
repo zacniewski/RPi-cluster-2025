@@ -45,12 +45,11 @@ deb [arch=arm64 signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.
 
 #### 2. Post-installation steps
 - optional post-installation [procedures](https://docs.docker.com/engine/install/linux-postinstall/) describe how to configure your Linux host machine to work better with Docker,
-- since our project is rather scientific and will be working mainly in local network, we'll
 - if you plan to work with the Docker in production, consider the [rootless](https://docs.docker.com/engine/security/rootless/) mode for your project,
-> [security](https://docs.docker.com/engine/security/#docker-daemon-attack-surface) should have the highest priority!
+- [security](https://docs.docker.com/engine/security/#docker-daemon-attack-surface) should have the highest priority!
 
 - I'd like not to preface the `docker` command with `sudo` everytime, and that's why I'd like to manage Docker as a non-root user,
-- it occurred that after installation of Docker the `docker` is already created:
+- it occurred that after installation of Docker the `docker` group is already created:
 ```bash
 artur@pawn-cluster:~ $ sudo groupadd docker
 groupadd: group 'docker' already exists
