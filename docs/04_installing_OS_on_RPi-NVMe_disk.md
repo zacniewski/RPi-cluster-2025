@@ -26,14 +26,14 @@
     - rook-cluster.local
     - queen-cluster.local
 
-- results of the `ping` command (e.g. `ping -c 5 pawn-cluster.local`)
-----------------------------------------------
-Hostname                IP Address
-----------------------------------------------
-pawn-cluster.local      192.168.1.19
-knight-cluster.local    192.168.1.25
-rook-cluster.local      192.168.1.26
-queen-cluster.local     192.168.1.27
+- results of the `ping` command (e.g. `ping -c 5 pawn-cluster.local`):
+
+|Hostname      |          IP Address|
+| ----------- | ----------- |
+|pawn-cluster.local    |  192.168.1.19|
+|knight-cluster.local  |  192.168.1.25|
+|rook-cluster.local   |   192.168.1.26|
+|queen-cluster.local |    192.168.1.27|
 ----------------------------------------------
 
 #### 2. Locale
@@ -96,7 +96,7 @@ $ sudo arp-scan --interface=enp34s0 --localnet
 #### 4. Setting static IP in Raspberry Pi
 - the problem: every time you reboot your Pi, the IP address can change, based on what the router decides to assign at the moment,
 - fortunately, there is a simple way to make sure that your Raspberry Pi always gets the same IP address on your local network or, at least, always tries to get the same address on your local network,
-- some solutions were found [here](https://botland.store/content/71-How-to-set-a-static-IP-in-Raspberry-Pi) and [here](https://www.tomshardware.com/how-to/static-ip-raspberry-pi), but with newer version of
+- some older solutions were found [here](https://botland.store/content/71-How-to-set-a-static-IP-in-Raspberry-Pi) and [here](https://www.tomshardware.com/how-to/static-ip-raspberry-pi), but with the newer version of OS for RPi things have changed,
 - when you check `ifconfig` for your Raspberry Pi, you can see the following interfaces with different IP addresses:
 ```bash
 eth0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
@@ -144,7 +144,7 @@ wlan0: flags=4163<UP,BROADCAST,RUNNING,MULTICAST>  mtu 1500
         static routers=192.168.1.1
         static domain_name_servers=192.168.1.1
     ```
-- the above method doesn't work with the newest RPi OS!
+- the above method **doesn't work** with the newer RPi OS!
 
 - now, the Network Manager is an official tool to change the static IP of RPi,
 - solution taken from [here](https://www.abelectronics.co.uk/kb/article/31/set-a-static-ip-address-on-raspberry-pi-os-bookworm),
