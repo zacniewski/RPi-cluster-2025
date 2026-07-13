@@ -99,7 +99,7 @@ Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
 ```
 - we can run the following command to get rid of the migration warning:
-``sh
+```sh
  uv run manage.py migrate
 ```
 
@@ -107,7 +107,7 @@ Quit the server with CONTROL-C.
 - now we need to create a `.env` file and store sensitive parameters and credentials there,
 - this file will not be sent to the remote repository, so you need to create it on your machine,
 - all information about using `python-decouple` is available in the documentation mentioned above.
-> Of course, we must add the `.env` to `.gitignore`!
+> Of course, we must add the `.env` to the `.gitignore` file!
 
 - the `.env` may look like this:
 ```bash
