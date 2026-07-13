@@ -74,6 +74,7 @@ Start with the overview, then follow the numbered docs in order.
 | 09 | [09_Gitlab_in_Docker_container.md](docs/09_Gitlab_in_Docker_container.md) | Optional GitLab container notes |
 | 10 | [10_links.md](docs/10_links.md) | External references used during the build |
 | 11 | [11_my_additional_devices_for_optional_usage.md](docs/11_my_additional_devices_for_optional_usage.md) | Optional peripherals and expansion ideas |
+| 12 | [12_MLOps_on_RPi_cluster.md](docs/12_MLOps_on_RPi_cluster.md) | MLOps system design on the four-node cluster |
 
 ## Current Status
 - Hardware is documented with photos and a component list.
