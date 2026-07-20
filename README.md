@@ -55,6 +55,7 @@ flowchart LR
 | `images/` | Photos and screenshots used in the documentation |
 | `django_rpi_cluster/` | Django project used for cluster monitoring |
 | `scripts/` | Helper scripts, reports, and local automation |
+| `mlops_system/` | MLOps pipeline services (ingestion, training, serving, orchestration) |
 | `systemd_service/` | Example systemd service for the Python stack |
 
 ## Documentation Map
