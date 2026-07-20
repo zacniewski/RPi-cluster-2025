@@ -29,17 +29,14 @@ bash shared/deploy_all.sh
 
 ## Architecture
 
-```
-┌─────────────-┐    cleaned data    ┌──────────────┐   model artifact   ┌──────────────┐
-│    pawn      │ ────────────────►  │   knight     │ ────────────────►  │    rook      │
-│  (ingest)    │                    │  (train)     │                    │   (serve)    │
-└──────┬───────┘                    └──────┬───────┘                    └──────┬───────┘
-       │ status                            │ metrics                          │ health
-       ▼                                   ▼                                  ▼
-┌──────────────────────────────────────────────────────────────────────────────────────┐
-│                          queen (orchestrate + track)                                 │
-│                     MLflow · Scheduler · Dashboard                                   │
-└──────────────────────────────────────────────────────────────────────────────────────┘
+```mermaid
+graph LR
+    P[pawn<br/>ingest] -->|cleaned data| K[knight<br/>train]
+    K -->|model artifact| R[rook<br/>serve]
+
+    P -->|status| Q[queen<br/>orchestrate + track<br/>MLflow · Scheduler · Dashboard]
+    K -->|metrics| Q
+    R -->|health| Q
 ```
 
 ## Documentation
