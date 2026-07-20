@@ -12,7 +12,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from fastapi import FastAPI, BackgroundTasks
+from fastapi import FastAPI
 from pydantic import BaseModel
 
 from ingest import run as run_ingestion
@@ -78,7 +78,7 @@ def data_status():
 
 
 @app.post("/ingest", response_model=IngestResponse)
-def trigger_ingest(req: IngestRequest, background_tasks: BackgroundTasks):
+def trigger_ingest(req: IngestRequest):
     """Trigger an ingestion run. Runs synchronously for simplicity."""
     result = run_ingestion(source_override=req.source, push=req.push)
     return IngestResponse(**result)

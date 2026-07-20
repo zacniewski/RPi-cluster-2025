@@ -55,10 +55,10 @@ def execute_step(step: dict, nodes: dict) -> dict:
             else:
                 resp = client.get(url)
 
-        resp.raise_for_status()
-        result = resp.json()
-        logger.info("Step '%s' completed: %s", step["name"], result.get("status", "ok"))
-        return {"step": step["name"], "status": "success", "response": result}
+            resp.raise_for_status()
+            result = resp.json()
+            logger.info("Step '%s' completed: %s", step["name"], result.get("status", "ok"))
+            return {"step": step["name"], "status": "success", "response": result}
 
     except httpx.HTTPStatusError as exc:
         logger.error("Step '%s' HTTP error: %s %s", step["name"], exc.response.status_code, exc.response.text)

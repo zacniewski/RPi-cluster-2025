@@ -1,9 +1,9 @@
-from datetime import datetime
+import json
+from datetime import datetime, timezone
+
+import psutil
 from decouple import config
 from django.shortcuts import render
-import json
-import psutil
-from django.conf import settings
 
 # Note: paramiko needs to be installed with: pip install paramiko
 # or by running: uv pip install -e . (if using uv)
@@ -46,7 +46,7 @@ def system_parameters(request):
 
     # Get boot time
     boot_time = psutil.boot_time()
-    boot_time = datetime.fromtimestamp(boot_time).strftime("%Y-%m-%d, %H:%M:%S")
+    boot_time = datetime.fromtimestamp(boot_time, tz=timezone.utc).strftime("%Y-%m-%d, %H:%M:%S")
 
     # Get a system load
     load_avg = psutil.getloadavg()
@@ -66,8 +66,6 @@ def system_parameters(request):
         "load_avg": load_avg,
         "process_count": process_count,
     }
-    print(context)
-
     return render(request, 'monitoring/system_parameters.html', context)
 
 def remote_script_execution(request, machine=None):
@@ -128,9 +126,7 @@ def remote_script_execution(request, machine=None):
             # Get the output
             script_output = stdout.read().decode('utf-8')
             script_output = script_output.replace("'", '"')
-            print(script_output)
             params = json.loads(script_output)
-            print(params)
 
             error_output = stderr.read().decode('utf-8')
 

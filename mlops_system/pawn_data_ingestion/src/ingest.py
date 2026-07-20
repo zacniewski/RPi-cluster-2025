@@ -154,7 +154,8 @@ def run(source_override: str | None = None, push: bool = False) -> dict:
     save_raw(df, raw_dir, ts)
 
     # 3. Validate
-    rules = yaml.safe_load(open(RULES_PATH))
+    with open(RULES_PATH) as f:
+        rules = yaml.safe_load(f)
     ok, report = validate_dataframe(df, rules)
     if not ok:
         logger.error("Validation FAILED:\n%s", report)
