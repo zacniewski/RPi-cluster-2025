@@ -1,0 +1,12 @@
+services:
+  rook-serving:
+    build: .
+    container_name: rook-serving
+    ports:
+      - "8080:8080"
+    volumes:
+      - /home/artur/SERVING/models:/models
+      - /home/artur/SERVING/logs:/logs
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1

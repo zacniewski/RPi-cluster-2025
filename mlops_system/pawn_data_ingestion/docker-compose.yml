@@ -1,0 +1,14 @@
+services:
+  pawn-ingestion:
+    build: .
+    container_name: pawn-ingestion
+    ports:
+      - "8081:8081"
+    volumes:
+      - /home/artur/DATA/raw:/data/raw
+      - /home/artur/DATA/processed:/data/processed
+      - /home/artur/DATA/logs:/data/logs
+      - ~/.ssh:/root/.ssh:ro
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1

@@ -1,0 +1,27 @@
+services:
+  mlflow:
+    image: ghcr.io/mlflow/mlflow:latest
+    container_name: mlflow-server
+    ports:
+      - "5000:5000"
+    volumes:
+      - /home/artur/ORCHESTRATION/mlflow:/mlflow
+    command: >
+      mlflow server
+      --backend-store-uri sqlite:////mlflow/mlflow.db
+      --default-artifact-root /mlflow/artifacts
+      --host 0.0.0.0
+    restart: unless-stopped
+
+  orchestrator:
+    build: .
+    container_name: queen-orchestrator
+    ports:
+      - "8083:8083"
+    volumes:
+      - /home/artur/ORCHESTRATION/logs:/logs
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+    depends_on:
+      - mlflow

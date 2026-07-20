@@ -1,0 +1,27 @@
+# =============================================================================
+# Ingestion Configuration — pawn-cluster
+# =============================================================================
+# This file controls what data source to use and where to store results.
+
+# Data source: "demo_iris", "csv_file", or "api"
+source_type: demo_iris
+
+# For source_type: csv_file
+csv_path: /data/raw/input.csv
+
+# For source_type: api
+api_url: ""
+api_headers: {}
+
+# Output paths (inside the container)
+raw_dir: /data/raw
+processed_dir: /data/processed
+log_dir: /data/logs
+
+# Target node for pushing processed data
+knight_host: knight-cluster
+knight_user: artur
+knight_data_dir: /home/artur/TRAINING/data
+
+# Timestamp format for versioned output files
+timestamp_format: "%Y%m%d_%H%M%S"

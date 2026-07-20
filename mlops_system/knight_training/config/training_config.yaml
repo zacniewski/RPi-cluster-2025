@@ -1,0 +1,50 @@
+# =============================================================================
+# Training Configuration — knight-cluster
+# =============================================================================
+
+# Path to the dataset (inside the container)
+dataset_path: /data/latest.csv
+
+# Target column name
+target_column: target
+
+# Feature columns (leave empty to use all columns except target)
+feature_columns: []
+
+# Model type: "random_forest", "gradient_boosting", "logistic_regression"
+model_type: random_forest
+
+# Hyperparameters per model type
+hyperparameters:
+  random_forest:
+    n_estimators: 100
+    max_depth: 10
+    random_state: 42
+  gradient_boosting:
+    n_estimators: 100
+    max_depth: 5
+    learning_rate: 0.1
+    random_state: 42
+  logistic_regression:
+    max_iter: 200
+    random_state: 42
+
+# Train/test split
+test_size: 0.2
+random_state: 42
+
+# Output paths (inside the container)
+model_dir: /models
+log_dir: /logs
+
+# MLflow tracking
+mlflow_tracking_uri: http://queen-cluster:5000
+mlflow_experiment_name: rpi-cluster-training
+
+# Model export format: "joblib" or "pickle"
+export_format: joblib
+
+# Target node for pushing model artifacts
+rook_host: rook-cluster
+rook_user: artur
+rook_model_dir: /home/artur/SERVING/models

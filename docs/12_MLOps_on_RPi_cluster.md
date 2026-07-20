@@ -294,7 +294,7 @@ All four nodes share the following infrastructure that is already in place:
 
 ## Extending the System
 
-The design is intentionally minimal so it is easy to grow. Some natural next steps:
+The design is intentionally minimal, so it is easy to grow. Some natural next steps:
 
 - **Add a data versioning layer** — replace the plain `processed/` directory on `pawn-cluster` with [DVC](https://dvc.org/) to track dataset versions alongside model versions.
 - **Add automated retraining triggers** — instead of a fixed cron schedule, trigger retraining when data drift is detected (e.g. using [Evidently](https://www.evidentlyai.com/)).

@@ -1,0 +1,51 @@
+# =============================================================================
+# Pipeline Configuration — queen-cluster
+# =============================================================================
+
+# SSH user for all nodes
+ssh_user: artur
+
+# Node addresses
+nodes:
+  pawn:
+    host: pawn-cluster
+    api_port: 8081
+  knight:
+    host: knight-cluster
+    api_port: 8082
+  rook:
+    host: rook-cluster
+    api_port: 8080
+
+# Pipeline schedule (APScheduler interval in hours)
+schedule_interval_hours: 6
+
+# Pipeline steps — each step calls an HTTP endpoint on the target node
+pipeline_steps:
+  - name: ingest
+    node: pawn
+    method: POST
+    path: /ingest
+    body:
+      source: null
+      push: true
+    timeout: 120
+
+  - name: train
+    node: knight
+    method: POST
+    path: /train
+    body:
+      model_type: null
+      push: true
+    timeout: 300
+
+  - name: reload_model
+    node: rook
+    method: POST
+    path: /reload
+    body: {}
+    timeout: 30
+
+# Log directory (inside the container)
+log_dir: /logs

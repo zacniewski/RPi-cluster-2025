@@ -1,0 +1,15 @@
+services:
+  knight-training:
+    build: .
+    container_name: knight-training
+    ports:
+      - "8082:8082"
+    volumes:
+      - /home/artur/TRAINING/data:/data
+      - /home/artur/TRAINING/models:/models
+      - /home/artur/TRAINING/logs:/logs
+      - ~/.ssh:/root/.ssh:ro
+    restart: unless-stopped
+    environment:
+      - PYTHONUNBUFFERED=1
+      - MLFLOW_TRACKING_URI=http://queen-cluster:5000
